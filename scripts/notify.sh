@@ -22,7 +22,7 @@ while true; do
   output=$(tmux capture-pane -pt $PANEID)
   # run tests to determine if work is done
   # if so, break and notify
-  lc=$(echo $output | rev | head -c1)
+  lc=$(echo $output | tail -c2)
 
   if [[ "$lc" == "$" ]]; then
     notify-send "Tmux pane task completed!"
