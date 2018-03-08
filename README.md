@@ -2,6 +2,8 @@
 
 Tmux plugin to notify you when processes complete. 
 
+Notification is via libnotify and visual bell raised in the tmux window. Visual bells can be mapped (in the terminal level) to X11 urgency bit and handled by your window manager.
+
 ## Use cases
 
 + When you have already started a process in a pane and wish to be notified; that is can't use a manual trigger
