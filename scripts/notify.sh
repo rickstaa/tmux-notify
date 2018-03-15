@@ -24,7 +24,8 @@ while true; do
   # if so, break and notify
   lc=$(echo $output | tail -c2)
 
-  if [[ "$lc" == "$" ]]; then
+  case $lc in
+  "$" | "#" )
     # notify-send does not always work due to changing dbus params
     # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
     notify-send "Tmux pane task completed!"
@@ -33,7 +34,7 @@ while true; do
     # for eg, Xresources -> URxvt.urgentOnBell: true
     tmux split-window "echo -e \"\a\" && exit"
     break
-  fi
+  esac
 
   sleep 10
 done
