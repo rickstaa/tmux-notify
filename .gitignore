@@ -1,1 +1,7 @@
+
+
+# Folders to ignore
+.vscode
+
+# Files to ignore
 *.swp
