@@ -12,10 +12,10 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    id="svg906"
-   width="778.23285"
+   width="330.01797"
    height="160"
-   viewBox="0 0 778.23285 160"
-   sodipodi:docname="tmux-notify-logo.svg"
+   viewBox="0 0 330.01798 160"
+   sodipodi:docname="tmux-notify-icon.svg"
    inkscape:version="0.92.4 (unknown)"
    inkscape:export-filename="/home/ricks/tmux-notify/resources/tmux-notify-icon.png"
    inkscape:export-xdpi="90"
@@ -71,55 +71,55 @@
      fit-margin-bottom="0"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="821.74321"
-     inkscape:cy="233.70618"
+     inkscape:zoom="2.1352764"
+     inkscape:cx="297.63368"
+     inkscape:cy="157.92084"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer3">
+     inkscape:current-layer="g1694">
     <sodipodi:guide
-       position="84.663529,144.99351"
+       position="84.663532,144.99351"
        orientation="1,0"
        id="guide2330"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="244.66352,14"
+       position="244.66353,14.000002"
        orientation="1,0"
        id="guide2336"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="9.603505,82.424928"
+       position="9.603511,82.42493"
        orientation="0,1"
        id="guide2338"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="9.603505,160.04954"
+       position="9.603511,160.04954"
        orientation="0,1"
        id="guide2340"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="107.83434,-0.11708086"
+       position="107.83436,-0.11707918"
        orientation="0,1"
        id="guide1476"
        inkscape:locked="false" />
     <inkscape:grid
        type="xygrid"
        id="grid1478"
-       originx="9.603505"
-       originy="0" />
+       originx="9.6035101"
+       originy="1.7412109e-06" />
     <sodipodi:guide
-       position="273.66352,112.91358"
+       position="273.66353,112.91358"
        orientation="1,0"
        id="guide1480"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="244.66352,113"
+       position="244.66353,113"
        orientation="1,0"
        id="guide1482"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="26.657972,132.2963"
+       position="26.657971,132.2963"
        orientation="0,1"
        id="guide1484"
        inkscape:locked="false" />
@@ -127,9 +127,8 @@
   <g
      inkscape:groupmode="layer"
      id="layer4"
-     inkscape:label="tmux icon"
-     transform="translate(9.603505)"
-     style="display:inline">
+     inkscape:label="tmux"
+     transform="translate(9.60351)">
     <g
        sketch:type="MSPage"
        id="Page-1-9"
@@ -167,25 +166,6 @@
              y="135.39062" /></text>
       </g>
     </g>
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer7"
-     inkscape:label="tnotify text"
-     style="display:inline"
-     transform="translate(5e-6)">
-    <text
-       id="text2269"
-       y="122.67542"
-       x="267.42133"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:153.33332825px;line-height:1.25;font-family:'Mukta Vaani';-inkscape-font-specification:'Mukta Vaani';letter-spacing:0px;word-spacing:0px;display:inline;fill:#1bb91f;fill-opacity:1;stroke:none"
-       xml:space="preserve"><tspan
-         style="font-size:153.33332825px;line-height:1.25;letter-spacing:-0.40000001px"
-         y="122.67542"
-         x="267.42133"
-         id="tspan2267"
-         sodipodi:role="line"
-         dx="0">tnotify</tspan></text>
   </g>
   <g
      id="g1755"
@@ -242,8 +222,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="notification"
-     transform="translate(174.14671,78.439636)"
-     style="display:inline">
+     transform="translate(174.14671,78.439636)">
     <g
        id="g2647"
        transform="matrix(0.22624458,-0.05434371,0.05434371,0.22624458,-92.896389,-64.960627)"
@@ -312,8 +291,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="sound"
-     transform="translate(174.14671,78.439636)"
-     style="display:inline">
+     transform="translate(174.14671,78.439636)">
     <g
        id="g1694"
        style="fill:#ffffff"
@@ -330,12 +308,12 @@
          style="fill:#008080;stroke-width:6.40334082" />
       <path
          id="path1686-8"
-         d="m 682.61835,2.1415073 c 2.5037,-2.50370604 6.55062,-2.50370604 9.05432,0 13.9913,13.9912977 21.69452,32.6122127 21.69452,52.4433587 0,19.831145 -7.70322,38.458463 -21.69452,52.443324 -1.24865,1.24865 -2.8879,1.87618 -4.52716,1.87618 -1.63926,0 -3.27851,-0.62753 -4.52716,-1.87618 -2.50371,-2.50369 -2.50371,-6.55056 0,-9.054288 11.57084,-11.570837 17.94216,-26.977274 17.94216,-43.389036 0,-16.411762 -6.37132,-31.824603 -17.94216,-43.389035 -2.4973,-2.5037054 -2.4973,-6.5506175 0,-9.0543237 z"
+         d="m 234.40347,2.1415073 c 2.5037,-2.50370604 6.55062,-2.50370604 9.05432,0 13.9913,13.9912977 21.69452,32.6122127 21.69452,52.4433587 0,19.831145 -7.70322,38.458463 -21.69452,52.443324 -1.24865,1.24865 -2.8879,1.87618 -4.52716,1.87618 -1.63926,0 -3.27851,-0.62753 -4.52716,-1.87618 -2.50371,-2.50369 -2.50371,-6.55056 0,-9.054288 11.57084,-11.570837 17.94216,-26.977274 17.94216,-43.389036 0,-16.411762 -6.37132,-31.824603 -17.94216,-43.389035 -2.4973,-2.5037054 -2.4973,-6.5506175 0,-9.0543237 z"
          inkscape:connector-curvature="0"
          style="fill:#008080;stroke-width:6.40334082" />
       <path
          id="path1688-8"
-         d="m 660.18745,94.330401 c -1.63926,0 -3.27851,-0.627528 -4.52716,-1.876179 -2.50371,-2.503705 -2.50371,-6.550617 0,-9.054323 16.37974,-16.379745 16.37974,-43.024045 0,-59.397387 -2.50371,-2.503707 -2.50371,-6.550617 0,-9.054325 2.5037,-2.503705 6.55061,-2.503705 9.05432,0 21.36795,21.367948 21.36795,56.144492 0,77.506035 -1.24865,1.255055 -2.88791,1.876179 -4.52716,1.876179 z"
+         d="m 211.97257,94.330401 c -1.63926,0 -3.27851,-0.627528 -4.52716,-1.876179 -2.50371,-2.503705 -2.50371,-6.550617 0,-9.054323 16.37974,-16.379745 16.37974,-43.024045 0,-59.397387 -2.50371,-2.503707 -2.50371,-6.550617 0,-9.054325 2.5037,-2.503705 6.55061,-2.503705 9.05432,0 21.36795,21.367948 21.36795,56.144492 0,77.506035 -1.24865,1.255055 -2.88791,1.876179 -4.52716,1.876179 z"
          inkscape:connector-curvature="0"
          style="fill:#008080;stroke-width:6.40334082" />
     </g>

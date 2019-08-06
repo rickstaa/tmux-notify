@@ -15,7 +15,7 @@
    width="778.23285"
    height="160"
    viewBox="0 0 778.23285 160"
-   sodipodi:docname="tmux-notify-logo.svg"
+   sodipodi:docname="tmux-notify-logo2.svg"
    inkscape:version="0.92.4 (unknown)"
    inkscape:export-filename="/home/ricks/tmux-notify/resources/tmux-notify-icon.png"
    inkscape:export-xdpi="90"
@@ -71,13 +71,13 @@
      fit-margin-bottom="0"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="821.74321"
-     inkscape:cy="233.70618"
+     inkscape:zoom="1.0676382"
+     inkscape:cx="319.0314"
+     inkscape:cy="283.74639"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer3">
+     inkscape:current-layer="layer4">
     <sodipodi:guide
        position="84.663529,144.99351"
        orientation="1,0"
@@ -127,7 +127,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer4"
-     inkscape:label="tmux icon"
+     inkscape:label="tmux new"
      transform="translate(9.603505)"
      style="display:inline">
     <g
@@ -155,6 +155,12 @@
              inkscape:connector-curvature="0"
              style="fill:#3c3c3c" />
         </g>
+        <path
+           sketch:type="MSShapeGroup"
+           id="wordmark-4"
+           d="m 241.77284,147.83457 c -10.91857,0 -19.13495,-2.86746 -24.64938,-8.60247 -5.51443,-5.73501 -8.27161,-14.22711 -8.27161,-25.47654 V 61.975309 H 189 V 47.08642 h 19.85185 V 14 h 16.54321 v 33.08642 h 36.39506 v 14.888889 h -36.39506 v 51.945681 c 0,6.50703 1.59916,11.27694 4.79753,14.30987 3.19837,3.03294 7.38928,4.54939 12.57284,4.54939 2.42635,0 5.12838,-0.27572 8.10617,-0.82716 2.9778,-0.55145 6.01069,-1.3786 9.09877,-2.48149 l 3.30864,14.55803 c -3.74981,1.32346 -7.41685,2.28847 -11.00123,2.89506 -3.58438,0.60659 -7.08599,0.90988 -10.50494,0.90988 z m 52.92956,-1.48889 H 278.15919 V 47.08642 h 16.54321 v 16.54321 c 0,0 10.06376,-9.92591 14.97161,-13.234568 4.90784,-3.308659 10.67034,-4.962963 17.28765,-4.962963 5.8453,0 10.83578,1.626732 14.97161,4.880247 4.13582,3.253514 7.086,7.692564 8.85061,13.317284 0,0 11.13907,-9.92591 16.21235,-13.234568 5.07328,-3.308659 11.08392,-4.962963 18.0321,-4.962963 7.7202,0 13.89627,2.839889 18.52839,8.519753 4.63213,5.679864 6.94815,13.317236 6.94815,22.912346 V 146.34568 H 393.96166 V 79.511111 c 0,-6.617317 -1.2683,-11.332085 -3.80494,-14.144444 -2.53663,-2.81236 -6.1761,-4.218519 -10.91851,-4.218519 -4.74241,0 -9.45718,1.433731 -14.14445,4.301235 -4.68726,2.867504 -8.8506,6.672404 -12.49012,11.414815 V 146.34568 H 336.06043 V 79.511111 c 0,-6.617317 -1.2683,-11.332085 -3.80494,-14.144444 -2.53664,-2.81236 -6.17611,-4.218519 -10.91852,-4.218519 -4.74241,0 -9.45718,1.433731 -14.14444,4.301235 -4.68727,2.867504 -8.8506,6.672404 -12.49013,11.414815 z m 144.24809,-7.60988 c -5.8453,-6.17616 -8.7679,-14.39254 -8.7679,-24.64938 v -67 h 16.5432 v 63.69136 c 0,7.05847 1.65431,12.40739 4.96297,16.04691 3.30866,3.63953 8.16128,5.45926 14.55802,5.45926 5.07328,0 10.11891,-1.4613 15.13704,-4.38395 5.01813,-2.92265 10.00862,-7.25141 14.97161,-12.98642 V 47.08642 h 16.54321 v 99.25926 h -16.54321 v -16.54321 c 0,0 -11.22179,9.92591 -16.4605,13.23457 C 474.65622,146.3457 468.78344,148 462.27641,148 c -9.7054,0 -17.48063,-3.08804 -23.32592,-9.2642 z m 149.70734,7.60988 -24.15309,-37.38765 -22.66419,37.38765 H 523.47758 L 556.564,96.550617 524.63561,47.08642 H 543.164 l 22.99506,35.733333 23.32593,-35.733333 h 18.36296 l -33.41728,48.471605 32.75555,50.787655 z"
+           inkscape:connector-curvature="0"
+           style="fill:#1bb91f" />
         <text
            xml:space="preserve"
            style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -167,25 +173,6 @@
              y="135.39062" /></text>
       </g>
     </g>
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer7"
-     inkscape:label="tnotify text"
-     style="display:inline"
-     transform="translate(5e-6)">
-    <text
-       id="text2269"
-       y="122.67542"
-       x="267.42133"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:153.33332825px;line-height:1.25;font-family:'Mukta Vaani';-inkscape-font-specification:'Mukta Vaani';letter-spacing:0px;word-spacing:0px;display:inline;fill:#1bb91f;fill-opacity:1;stroke:none"
-       xml:space="preserve"><tspan
-         style="font-size:153.33332825px;line-height:1.25;letter-spacing:-0.40000001px"
-         y="122.67542"
-         x="267.42133"
-         id="tspan2267"
-         sodipodi:role="line"
-         dx="0">tnotify</tspan></text>
   </g>
   <g
      id="g1755"
