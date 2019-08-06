@@ -1,4 +1,6 @@
 # tmux-notify
+[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green)](https://github.com/rickstaa/Todoist_Global_Shortcuts_WIN10/pulse)
+[![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)](https://github.com/rickstaa/Todoist_Global_Shortcuts_WIN10/blob/master/contributing.md)
 
 Tmux plugin to notify you when processes complete.
 
