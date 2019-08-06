@@ -1,4 +1,7 @@
 # tmux-notify
+[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green)](https://github.com/rickstaa/Todoist_Global_Shortcuts_WIN10/pulse)
+[![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)](https://github.com/https://github.com/ChanderG/tmux-notify/blob/master_rstaa/contributing.md)
+[![Tmux version](https://img.shields.io/badge/tmux-%3D%3E1.9-blue)](https://github.com/tmux/tmux/wiki)
 
 Tmux plugin to notify you when processes complete.
 
@@ -63,6 +66,9 @@ Put `set -g @tnotify-sleep-duration 'desired duration'` in `.tmux.conf` to chang
 
 Pretty naive approach actually. Checks if pane content ends in $ every 10 seconds.
 Will add other prompt end characters as needed.
+
+## Contributing
+Contributions to this repository are welcome. See the [contribution guidelines](https://github.com/https://github.com/ChanderG/tmux-notify/blob/master_rstaa/contributing.md) for more information.
 
 ## License
 
