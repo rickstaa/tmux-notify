@@ -66,6 +66,9 @@ Put `set -g @tnotify-sleep-duration 'desired duration'` in `.tmux.conf` to chang
 Pretty naive approach actually. Checks if pane content ends in $ every 10 seconds.
 Will add other prompt end characters as needed.
 
+## Contributing
+Contributions to this repository are welcome. See the [contribution guidelines](https://img.shields.io/badge/contributions-welcome-orange.svg)](https://github.com/https://github.com/ChanderG/tmux-notify/blob/master_rstaa/contributing.md) for more information.
+
 ## License
 
 MIT
