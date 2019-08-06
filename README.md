@@ -3,6 +3,8 @@
 [![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)](https://github.com/https://github.com/ChanderG/tmux-notify/blob/master_rstaa/contributing.md)
 [![Tmux version](https://img.shields.io/badge/tmux-%3D%3E1.9-blue)](https://github.com/tmux/tmux/wiki)
 
+<img src="resources/tmux-notify-logo.svg" alt="tmux notify logo" width="567" height="135"/>
+
 Tmux plugin to notify you when processes complete.
 
 Notification is via libnotify and visual bell raised in the tmux window. Visual bells can be mapped (in the terminal level) to X11 urgency bit and handled by your window manager.
