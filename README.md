@@ -1,6 +1,6 @@
 # tmux-notify
-[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green)](https://github.com/ChanderG/tmux-notify/pulse)
-[![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)](https://github.com/ChanderG/tmux-notify/blob/master/contributing.md)
+[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green)](pulse)
+[![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)](contributing.md)
 [![Tmux version](https://img.shields.io/badge/tmux-%3D%3E1.9-blue)](https://github.com/tmux/tmux/wiki)
 
 <a href="https://github.com/ChanderG/tmux-notify"><img src="resources/tmux-notify-logo.svg" alt="tmux notify logo" width="567" height="135"/></a>
@@ -74,4 +74,4 @@ Contributions to this repository are welcome. See the [contribution guidelines](
 
 ## License
 
-[MIT](LICENSE.md)
+[MIT](LICENSE)
