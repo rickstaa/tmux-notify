@@ -75,3 +75,7 @@ Contributions to this repository are welcome. See the [contribution guidelines](
 ## License
 
 [MIT](LICENSE)
+
+## References
+
+-   Icon created with svg made by [@Eucalyp](https://www.flaticon.com/authors/chanut) from [www.flaticon.com](https://www.flaticon.com/authors/eucalyp)
