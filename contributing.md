@@ -11,11 +11,11 @@ Projects that are open for contributions can be found on the [issue tab](https:
 
 ## Forking process
 
-1.  Fork the [repository](https://github.com/rickstaa/ros_conda_wrapper)
+1.  Fork the [repository](https://github.com/ChanderG/tmux-notify)
 2.  Create your feature branch `git checkout -b feature/fooBar`
 3.  Commit your changes `git commit -am 'Add some fooBar'`
 4.  Push to the branch `git push origin feature/fooBar`
-5. Create a new Pull Request
+5.  Create a new Pull Request
 
 ## Pull Request Process
 
