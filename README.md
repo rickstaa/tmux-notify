@@ -1,5 +1,5 @@
 # tmux-notify
-[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green)](pulse)
+[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green)](https://github.com/ChanderG/tmux-notify/pulse)
 [![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)](contributing.md)
 [![Tmux version](https://img.shields.io/badge/tmux-%3D%3E1.9-blue)](https://github.com/tmux/tmux/wiki)
 
