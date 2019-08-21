@@ -9,6 +9,14 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 Projects that are open for contributions can be found on the [issue tab](https://github.com/ChanderG/tmux-notify/issues) and will be labelled with the `help wanted` tag. Projects with the `beginner` label are ideal for beginning programmers. If you find a project that spikes your interest, leave a comment. We will then assign you to this project. After you did one project, you will be added as a contributor after which you can attach yourself to projects to work on.
 
+## Forking process
+
+1.  Fork the [repository](https://github.com/ChanderG/tmux-notify)
+2.  Create your feature branch `git checkout -b feature/fooBar`
+3.  Commit your changes `git commit -am 'Add some fooBar'`
+4.  Push to the branch `git push origin feature/fooBar`
+5.  Create a new Pull Request
+
 ## Pull Request Process
 
 1.  Ensure any install or build dependencies are removed before the end of the layer when doing a build.
