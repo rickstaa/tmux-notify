@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+## -- Cancel monitoring script
 
 # get id of the current active pane
 PANEID=$(tmux list-panes | grep "active" | awk -F\] '{print $3}' | awk '{print $1}')

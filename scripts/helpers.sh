@@ -1,4 +1,5 @@
-# Helper functions
+#!/usr/bin/env bash
+# -- Helper functions
 
 # Get tmux option
 get_tmux_option() {

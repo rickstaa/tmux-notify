@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+## -- Add tmux plugin variables
 SUPPORTED_VERSION="1.9"
 
 ## Tnotify tmux options
