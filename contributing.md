@@ -46,7 +46,7 @@ The auto-changelog tool by [@CookPete](https://github.com/CookPete/) is a small 
 4.  Commit any stages changes.
 5.  Bump the version using the bumpversion tool.
 6.  Run the `auto-changelog` command.
-7.  Commit the changes using `git commit -m "Updated CHANGELOG.md".
+7.  Commit the changes using `git commit -m "Updated CHANGELOG.md"`.
 8.  You can now push your changes to github and submit a pull request.
 
 ## Code of Conduct
