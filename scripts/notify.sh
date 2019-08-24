@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+## -- Start monitoring script
 
 # Get current directory
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
