@@ -33,6 +33,7 @@ The bumpversion tool by [@Peritus](https://github.com/peritus) is a small comman
 2.  Go to the main repository folder.
 3.  Commit any staged changes.
 4.  Run the `bumpversion patch` command to increase the patch version (Example: v1.0.0 to v1.0.1).
+5.  Push the tags to the github repository using the `git push --tags` command.
 
 **NOTE:** If you add versioning to a file you have to add it to the `.bumpversion.cfg` file for it to be updated automatically by the bumpversion tool. More information on how to do this can be found on the [bumpversion documentation](https://github.com/CookPete/auto-changelog).
 
