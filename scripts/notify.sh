@@ -93,3 +93,32 @@ else  # If pane is already being monitored
   tmux display-message "Pane already monitored..."
   exit 0
 fi
+# Check process status every 10 seconds
+while true; do
+
+  # capture pane output
+  output=$(tmux capture-pane -pt $PANEID)
+
+  # run tests to determine if work is done
+  # if so, break and notify
+  lc=$(echo $output | tail -c2)
+  case $lc in
+  "$" | "#" )
+    tmux run-shell -b "$complete_message"
+    cmd="
+    printf '\ePtmux;\e\e[2t\e\\';
+    sleep 0.1;
+    printf '\ePtmux;\e\e[1t\e\\';
+    "
+    tmux split-window "$cmd"
+    tmux split-window "echo -e \"\a\" && exit"
+    break
+  esac
+
+  # Sleep for a given time
+  monitor_sleep_duration_value=$(get_tmux_option "$monitor_sleep_duration" "$monitor_sleep_duration_default")
+  sleep $monitor_sleep_duration_value
+done
+
+# job done - remove pid file
+rm "$PID_DIR/$PANEID".pid
