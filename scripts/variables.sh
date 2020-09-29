@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 ## -- Add tmux plugin variables
+
+## Main variables
 SUPPORTED_VERSION="1.9"
+PID_DIR=~/.tmux/notify
 
 ## Tnotify tmux options
 
