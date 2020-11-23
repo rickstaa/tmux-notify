@@ -35,7 +35,7 @@ verbose_enabled() {
 # Get pane id
 SESSION_NR=$(tmux list-sessions | grep "(attached)" | awk '{print $1}' | tr -d :)
 WINDOW_NR=$(tmux list-windows | grep "(active)" | awk '{print $1}' | tr -d :)
-PANE_NR=$(tmux list-panes | grep "active" | awk -F\] '{print $3}' | awk '{print $1}'  | tr -d %)
+PANE_NR=$(tmux list-panes | grep "active" | awk '{print $1}' | tr -d :)
 PANE_ID=$(detox_file_name "s_${SESSION_NR}_w${WINDOW_NR}_p${PANE_NR//%}")
 PID_FILE_PATH="${PID_DIR}/${PANE_ID}.pid"
 
@@ -67,6 +67,12 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     lc=$(echo "$output" | tail -c2)
     case $lc in
     "$" | "#" )
+      # tmux display-message "$@"
+      if [[ "$1" == "refocus" ]]; then
+        tmux switch -t "$SESSION_NR"
+        tmux select-window -t "$WINDOW_NR"
+        tmux select-pane -t "$PANE_NR"
+      fi
       # notify-send does not always work due to changing dbus params
       # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
       notify-send "$complete_message"
@@ -93,32 +99,3 @@ else  # If pane is already being monitored
   tmux display-message "Pane already monitored..."
   exit 0
 fi
-# Check process status every 10 seconds
-while true; do
-
-  # capture pane output
-  output=$(tmux capture-pane -pt $PANEID)
-
-  # run tests to determine if work is done
-  # if so, break and notify
-  lc=$(echo $output | tail -c2)
-  case $lc in
-  "$" | "#" )
-    tmux run-shell -b "$complete_message"
-    cmd="
-    printf '\ePtmux;\e\e[2t\e\\';
-    sleep 0.1;
-    printf '\ePtmux;\e\e[1t\e\\';
-    "
-    tmux split-window "$cmd"
-    tmux split-window "echo -e \"\a\" && exit"
-    break
-  esac
-
-  # Sleep for a given time
-  monitor_sleep_duration_value=$(get_tmux_option "$monitor_sleep_duration" "$monitor_sleep_duration_default")
-  sleep $monitor_sleep_duration_value
-done
-
-# job done - remove pid file
-rm "$PID_DIR/$PANEID".pid
