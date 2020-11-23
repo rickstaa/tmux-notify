@@ -25,5 +25,5 @@ set_tmux_option() {
 # Makes sure invalid chars are removed from a filename
 detox_file_name(){
 	local file_name="$1"
-	echo  "$file_name" | sed -e 's/[^A-Za-z0-9._-]/_/g'
+	echo "${file_name//[^A-Za-z0-9._-]/_}"
 }
