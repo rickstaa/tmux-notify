@@ -19,7 +19,6 @@ on_cancel()
   if [[ -f "$PID_FILE_PATH" ]]; then
     kill "$PID"
     rm "${PID_DIR}/${PANE_ID}.pid"
-    tmux display-message "Cancelling monitoring..."
   fi
   exit 0
 }
