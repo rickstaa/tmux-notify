@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 ## -- Add tmux plugin variables
-SUPPORTED_VERSION="1.9"
+
+## Main variables
+export SUPPORTED_VERSION="1.9"
+export PID_DIR=~/.tmux/notify
 
 ## Tnotify tmux options
 
 # Notification verbosity settings
-verbose_option="@tnotify-verbose"
-verbose_default="off"
-verbose_msg_option="@tnotify-verbose-msg"
-verbose_msg_default="(#S, #I:#P) Tmux pane task completed!"
+export verbose_option="@tnotify-verbose"
+export verbose_default="off"
+export verbose_msg_option="@tnotify-verbose-msg"
+export verbose_msg_default="(#S, #I:#P) Tmux pane task completed!"
 
 # Monitor checker interval
-monitor_sleep_duration="@tnotify-sleep-duration"
-monitor_sleep_duration_default=10
+export monitor_sleep_duration="@tnotify-sleep-duration"
+export monitor_sleep_duration_default=10
