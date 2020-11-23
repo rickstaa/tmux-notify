@@ -65,7 +65,7 @@ Put `set -g @tnotify-sleep-duration 'desired duration'` in `.tmux.conf` to chang
 
 **NOTE:** Keep in mind that there is a trade-off between notification speed (short sleep duration) and the amount of memory this tool needs.
 
-## How does it work?
+## How does it work
 
 Pretty naive approach actually. Checks if pane content ends in $ every 10 seconds.
 Will add other prompt end characters as needed.

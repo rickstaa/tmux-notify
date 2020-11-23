@@ -12,9 +12,12 @@ source "$CURRENT_DIR/variables.sh"
 
 on_cancel()
 {
+  # Wait a bit for all pane monitors to complete
+  sleep "$monitor_sleep_duration_value"
+
   # Preform cleanup operation is monitoring was canceled
   if [[ -f "$PID_FILE_PATH" ]]; then
-    kill $PID
+    kill "$PID"
     rm "${PID_DIR}/${PANE_ID}.pid"
     tmux display-message "Cancelling monitoring..."
   fi
@@ -58,11 +61,11 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   while true; do
 
     # capture pane output
-    output=$(tmux capture-pane -pt $PANE_NR)
+    output=$(tmux capture-pane -pt "$PANE_NR")
 
     # run tests to determine if work is done
     # if so, break and notify
-    lc=$(echo $output | tail -c2)
+    lc=$(echo "$output" | tail -c2)
     case $lc in
     "$" | "#" )
       # notify-send does not always work due to changing dbus params
@@ -77,12 +80,14 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
 
     # Sleep for a given time
     monitor_sleep_duration_value=$(get_tmux_option "$monitor_sleep_duration" "$monitor_sleep_duration_default")
-    sleep $monitor_sleep_duration_value
+    sleep "$monitor_sleep_duration_value"
   done
 
   # job done - remove pid file and return
-  rm "$PID_FILE_PATH"
-  # exit 0
+  if [[ -f "$PID_FILE_PATH" ]]; then
+    rm "$PID_FILE_PATH"
+  fi
+  exit 0
 else  # If pane is already being monitored
 
   # Display pane already monitored message

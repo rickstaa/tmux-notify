@@ -23,7 +23,7 @@ if [[ -f "$PID_FILE_PATH" ]]; then
   PID=$(cat "$PID_FILE_PATH")
 
   # Kill process and remove pid file
-  kill $PID
+  kill "$PID"
   rm "${PID_DIR}/${PANE_ID}.pid"
 
   # Display success message
