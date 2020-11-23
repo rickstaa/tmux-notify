@@ -10,10 +10,16 @@ source "$CURRENT_DIR/variables.sh"
 
 ## Functions
 
-# if user cancels
 on_cancel()
 {
-  tmux display-message "Cancelling monitoring..."
+  # Wait a bit for all pane monitors to complete
+  sleep "$monitor_sleep_duration_value"
+
+  # Preform cleanup operation is monitoring was canceled
+  if [[ -f "$PID_FILE_PATH" ]]; then
+    kill "$PID"
+    rm "${PID_DIR}/${PANE_ID}.pid"
+  fi
   exit 0
 }
 trap 'on_cancel' TERM
@@ -31,12 +37,13 @@ SESSION_NR=$(tmux list-sessions | grep "(attached)" | awk '{print $1}' | tr -d :
 WINDOW_NR=$(tmux list-windows | grep "(active)" | awk '{print $1}' | tr -d :)
 PANE_NR=$(tmux list-panes | grep "active" | awk -F\] '{print $3}' | awk '{print $1}'  | tr -d %)
 PANE_ID=$(detox_file_name "s_${SESSION_NR}_w${WINDOW_NR}_p${PANE_NR//%}")
+PID_FILE_PATH="${PID_DIR}/${PANE_ID}.pid"
 
 # Monitor pane if it is not already monitored
-if [[ ! -f "${PID_DIR}/${PANE_ID}.pid" ]]; then  # If pane not yet monitored
+if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
 
   # job started - create pid-file
-  echo "$$" > "${PID_DIR}/${PANE_ID}.pid"
+  echo "$$" > "$PID_FILE_PATH"
 
   # Display tnotify start messsage
   tmux display-message "Montoring pane..."
@@ -53,11 +60,11 @@ if [[ ! -f "${PID_DIR}/${PANE_ID}.pid" ]]; then  # If pane not yet monitored
   while true; do
 
     # capture pane output
-    output=$(tmux capture-pane -pt $PANE_NR)
+    output=$(tmux capture-pane -pt "$PANE_NR")
 
     # run tests to determine if work is done
     # if so, break and notify
-    lc=$(echo $output | tail -c2)
+    lc=$(echo "$output" | tail -c2)
     case $lc in
     "$" | "#" )
       # notify-send does not always work due to changing dbus params
@@ -72,12 +79,14 @@ if [[ ! -f "${PID_DIR}/${PANE_ID}.pid" ]]; then  # If pane not yet monitored
 
     # Sleep for a given time
     monitor_sleep_duration_value=$(get_tmux_option "$monitor_sleep_duration" "$monitor_sleep_duration_default")
-    sleep $monitor_sleep_duration_value
+    sleep "$monitor_sleep_duration_value"
   done
 
   # job done - remove pid file and return
-  rm "${PID_DIR}/${PANE_ID}.pid"
-  # exit 0
+  if [[ -f "$PID_FILE_PATH" ]]; then
+    rm "$PID_FILE_PATH"
+  fi
+  exit 0
 else  # If pane is already being monitored
 
   # Display pane already monitored message

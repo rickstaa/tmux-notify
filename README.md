@@ -1,5 +1,5 @@
 # tmux-notify
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ab27b2b704364bdd993f2c829473cebf)](https://www.codacy.com/app/rickstaa/tmux-notify?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rickstaa/tmux-notify&amp;utm_campaign=Badge_Grade)
+
 [![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green)](https://github.com/ChanderG/tmux-notify/pulse)
 [![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)](contributing.md)
 [![Tmux version](https://img.shields.io/badge/tmux-%3D%3E1.9-blue)](https://github.com/tmux/tmux/wiki)
@@ -65,12 +65,13 @@ Put `set -g @tnotify-sleep-duration 'desired duration'` in `.tmux.conf` to chang
 
 **NOTE:** Keep in mind that there is a trade-off between notification speed (short sleep duration) and the amount of memory this tool needs.
 
-## How does it work?
+## How does it work
 
 Pretty naive approach actually. Checks if pane content ends in $ every 10 seconds.
 Will add other prompt end characters as needed.
 
 ## Contributing
+
 Contributions to this repository are welcome. See the [contribution guidelines](contributing.md) for more information.
 
 ## License
