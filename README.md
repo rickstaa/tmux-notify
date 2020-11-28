@@ -28,7 +28,10 @@ Use `prefix + I` to install.
 
 ## Usage
 
-`prefix + m`: Start monitoring a pane to notify; exits after first notification.
+`prefix + m`: Start monitoring a pane and notify when it finishes.
+
+`prefix + alt + m`: Start monitoring a pane, return it in focus and notify when it finishes.
+
 `prefix + M`: Cancel monitoring of a pane.
 
 ## Pre-requisites

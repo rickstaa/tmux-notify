@@ -35,7 +35,7 @@ verbose_enabled() {
 # Get pane id
 SESSION_NR=$(tmux list-sessions | grep "(attached)" | awk '{print $1}' | tr -d :)
 WINDOW_NR=$(tmux list-windows | grep "(active)" | awk '{print $1}' | tr -d :)
-PANE_NR=$(tmux list-panes | grep "active" | awk -F\] '{print $3}' | awk '{print $1}'  | tr -d %)
+PANE_NR=$(tmux list-panes | grep "active" | awk '{print $1}' | tr -d :)
 PANE_ID=$(detox_file_name "s_${SESSION_NR}_w${WINDOW_NR}_p${PANE_NR//%}")
 PID_FILE_PATH="${PID_DIR}/${PANE_ID}.pid"
 
@@ -67,6 +67,12 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     lc=$(echo "$output" | tail -c2)
     case $lc in
     "$" | "#" )
+      # tmux display-message "$@"
+      if [[ "$1" == "refocus" ]]; then
+        tmux switch -t "$SESSION_NR"
+        tmux select-window -t "$WINDOW_NR"
+        tmux select-pane -t "$PANE_NR"
+      fi
       # notify-send does not always work due to changing dbus params
       # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
       notify-send "$complete_message"
