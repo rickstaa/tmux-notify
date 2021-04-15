@@ -32,13 +32,6 @@ verbose_enabled() {
 
 ## Main script
 
-# Get pane id
-SESSION_NR=$(tmux list-sessions | grep "(attached)" | awk '{print $1}' | tr -d :)
-WINDOW_NR=$(tmux list-windows | grep "(active)" | awk '{print $1}' | tr -d :)
-PANE_NR=$(tmux list-panes | grep "active" | awk '{print $1}' | tr -d :)
-PANE_ID=$(detox_file_name "s_${SESSION_NR}_w${WINDOW_NR}_p${PANE_NR//%}")
-PID_FILE_PATH="${PID_DIR}/${PANE_ID}.pid"
-
 # Monitor pane if it is not already monitored
 if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
 
@@ -60,7 +53,7 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   while true; do
 
     # capture pane output
-    output=$(tmux capture-pane -pt "$PANE_NR")
+    output=$(tmux capture-pane -pt %"$PANE_ID")
 
     # run tests to determine if work is done
     # if so, break and notify
@@ -69,9 +62,9 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     "$" | "#" )
       # tmux display-message "$@"
       if [[ "$1" == "refocus" ]]; then
-        tmux switch -t "$SESSION_NR"
-        tmux select-window -t "$WINDOW_NR"
-        tmux select-pane -t "$PANE_NR"
+        tmux switch -t \$"$SESSION_ID"
+        tmux select-window -t @"$WINDOW_ID"
+        tmux select-pane -t %"$PANE_ID"
       fi
       # notify-send does not always work due to changing dbus params
       # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896

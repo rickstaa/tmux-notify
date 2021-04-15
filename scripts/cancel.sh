@@ -9,13 +9,6 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$CURRENT_DIR/helpers.sh"
 source "$CURRENT_DIR/variables.sh"
 
-# Get pane id
-SESSION_NR=$(tmux list-sessions | grep "(attached)" | awk '{print $1}' | tr -d :)
-WINDOW_NR=$(tmux list-windows | grep "(active)" | awk '{print $1}' | tr -d :)
-PANE_NR=$(tmux list-panes | grep "active" | awk -F\] '{print $3}' | awk '{print $1}' | tr -d %)
-PANE_ID=$(detox_file_name "s_${SESSION_NR}_w${WINDOW_NR}_p${PANE_NR}")
-PID_FILE_PATH="${PID_DIR}/${PANE_ID}.pid"
-
 # Cancel pane monitoring if active
 if [[ -f "$PID_FILE_PATH" ]]; then
 
