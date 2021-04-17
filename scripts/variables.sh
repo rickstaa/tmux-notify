@@ -5,6 +5,12 @@
 export SUPPORTED_VERSION="1.9"
 export PID_DIR=~/.tmux/notify
 
+# Get ID's
+export SESSION_ID=$(tmux display-message -p '#{session_id}'  | tr -d $)
+export WINDOW_ID=$(tmux display-message -p '#{window_id}' | tr -d @)
+export PANE_ID=$(tmux display-message -p '#{pane_id}' | tr -d %)
+export PID_FILE_PATH="${PID_DIR}/${PANE_ID}.pid"
+
 ## Tnotify tmux options
 
 # Notification verbosity settings

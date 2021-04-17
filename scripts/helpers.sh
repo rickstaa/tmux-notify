@@ -20,10 +20,3 @@ set_tmux_option() {
 	local value="$2"
 	tmux set-option -gq "$option" "$value"
 }
-
-## Detox file names
-# Makes sure invalid chars are removed from a filename
-detox_file_name(){
-	local file_name="$1"
-	echo "${file_name//[^A-Za-z0-9._-]/_}"
-}
