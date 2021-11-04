@@ -59,7 +59,7 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     # if so, break and notify
     lc=$(echo "$output" | tail -c2)
     case $lc in
-    "$" | "#" )
+    "$" | "#" | "%")
       # tmux display-message "$@"
       if [[ "$1" == "refocus" ]]; then
         tmux switch -t \$"$SESSION_ID"
