@@ -12,7 +12,6 @@ source "${CURRENT_DIR}/helpers.sh"
 source "${CURRENT_DIR}/variables.sh"
 
 ## Functions
-
 on_cancel()
 {
   # Wait a bit for all pane monitors to complete
