@@ -73,6 +73,10 @@ Put `set -g @tnotify-sleep-duration 'desired duration'` in `.tmux.conf` to chang
 Pretty naive approach actually. Checks if pane content ends in $ every 10 seconds.
 Will add other prompt end characters as needed.
 
+### Add additional bash suffixes
+
+The tmux notify script uses your bash prompt suffix to check whether a command has finished. It looks for the `$`, `#`, `%` and `>` suffixes by default. If you customise your shell to use different bash suffixes, you can add them by putting `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here" in the `.tmux.conf\` file.
+
 ## Contributing
 
 Contributions to this repository are welcome. See the [contribution guidelines](contributing.md) for more information.

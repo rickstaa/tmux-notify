@@ -20,3 +20,8 @@ set_tmux_option() {
 	local value="$2"
 	tmux set-option -gq "$option" "$value"
 }
+
+# Escape globbing charaters
+escape_glob_chars() {
+  echo "$1" | sed 's/[.[\*^$()+?{|]/\\&/g'
+}

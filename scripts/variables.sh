@@ -12,6 +12,8 @@ export PANE_ID=$(tmux display-message -p '#{pane_id}' | tr -d %)
 export PID_FILE_PATH="${PID_DIR}/${PANE_ID}.pid"
 
 ## Tnotify tmux options
+export prompt_suffixes="@tnotify-prompt-suffixes"
+export prompt_suffixes_default=""
 
 # Notification verbosity settings
 export verbose_option="@tnotify-verbose"
