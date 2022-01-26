@@ -10,6 +10,26 @@ source "$CURRENT_DIR/variables.sh"
 
 ## Functions
 
+notify() {
+  # Try multiple notification systems
+  # Linux (notify-send)
+  if command -v notify-send &>/dev/null
+  then
+    # notify-send does not always work due to changing dbus params
+    # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
+    notify-send "$1"
+  # macOS (osascript)
+  elif command -v osascript &>/dev/null
+  then
+    osascript -e 'display notification "'"$1"'" with title "tmux-notify"'
+  fi
+
+  # trigger visual bell
+  # your terminal emulator can be setup to set URGENT bit on visual bell
+  # for eg, Xresources -> URxvt.urgentOnBell: true
+  tmux split-window "echo -e \"\a\" && exit"
+}
+
 on_cancel()
 {
   # Wait a bit for all pane monitors to complete
@@ -66,13 +86,7 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
         tmux select-window -t @"$WINDOW_ID"
         tmux select-pane -t %"$PANE_ID"
       fi
-      # notify-send does not always work due to changing dbus params
-      # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
-      notify-send "$complete_message"
-      # trigger visual bell
-      # your terminal emulator can be setup to set URGENT bit on visual bell
-      # for eg, Xresources -> URxvt.urgentOnBell: true
-      tmux split-window "echo -e \"\a\" && exit"
+      notify "$complete_message"
       break
     esac
 

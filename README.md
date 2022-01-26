@@ -36,8 +36,9 @@ Use `prefix + I` to install.
 
 ## Pre-requisites
 
-bash, notify-send on the machine with the tmux server.
-Tested only on Linux.
+notify-send or osascript on the machine with the tmux server.
+
+Works on Linux and macOS (note: only actively tested on Linux).
 
 ## Configuration
 
