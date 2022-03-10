@@ -57,9 +57,7 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
 
     # run tests to determine if work is done
     # if so, break and notify
-    lc=$(echo "$output" | tail -c2)
-    case $lc in
-    "$" | "#" | "%")
+    if echo "$output" | tail -n2 | grep -e '\$\|#\|%' &> /dev/null; then
       # tmux display-message "$@"
       if [[ "$1" == "refocus" ]]; then
         tmux switch -t \$"$SESSION_ID"
@@ -74,7 +72,7 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
       # for eg, Xresources -> URxvt.urgentOnBell: true
       tmux split-window "echo -e \"\a\" && exit"
       break
-    esac
+    fi
 
     # Sleep for a given time
     monitor_sleep_duration_value=$(get_tmux_option "$monitor_sleep_duration" "$monitor_sleep_duration_default")
