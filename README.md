@@ -83,4 +83,4 @@ Contributions to this repository are welcome. See the [contribution guidelines](
 
 ## References
 
-Icon created with svg made by [@eucalyp](https://www.flaticon.com/authors/eucalyp) from [www.flaticon.com](https://www.flaticon.com/authors/eucalyp)
+Icon created with svg made by [@chanut](https://www.flaticon.com/authors/chanut) from [www.flaticon.com](https://www.flaticon.com/authors/chanut)
