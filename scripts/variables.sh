@@ -3,7 +3,7 @@
 
 ## Main variables
 export SUPPORTED_VERSION="1.9"
-export PID_DIR=~/.tmux/notify
+export PID_DIR="$XDG_STATE_HOME/tmux/tmux-notify"
 
 # Get ID's
 export SESSION_ID=$(tmux display-message -p '#{session_id}'  | tr -d $)
