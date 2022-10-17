@@ -49,7 +49,7 @@ Put `set -g @tnotify-verbose 'on'` in `.tmux.conf` to enable this.
 
 #### Change the verbose notification message
 
-To change the verbose notifaction text put `set -g @tnotify-verbose-msg 'put your notification text here'` in `.tmux.conf`. You can use all the tmux variables in your notification text. Some useful tmux aliases are:
+To change the verbose notification text put `set -g @tnotify-verbose-msg 'put your notification text here'` in `.tmux.conf`. You can use all the tmux variables in your notification text. Some useful tmux aliases are:
 
 -   `#D`: Pane id
 -   `#P`: Pane index
