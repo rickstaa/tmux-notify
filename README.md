@@ -50,7 +50,7 @@ Put `set -g @tnotify-verbose 'on'` in the `.tmux.conf` config file to enable thi
 
 #### Change the verbose notification message
 
-To change the verbose notification text, put `set -g @tnotify-verbose-msg 'put your notification text here" in the `.tmux.conf\` config file. You can use all the tmux variables in your notification text. Some useful tmux aliases are:
+To change the verbose notification text, put `set -g @tnotify-verbose-msg 'put your notification text here'` in the `.tmux.conf\` config file. You can use all the tmux variables in your notification text. Some useful tmux aliases are:
 
 -   `#D`: Pane id
 -   `#P`: Pane index
@@ -59,7 +59,7 @@ To change the verbose notification text, put `set -g @tnotify-verbose-msg 'put y
 -   `#I`: Window index
 -   `#W`: Window name
 
-For the full list of aliases and variables, you are referred to the `FORMATS`  section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html).
+For the full list of aliases and variables you are referred to the `FORMATS`  section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html).
 
 ### Change monitor update period
 
@@ -81,7 +81,7 @@ The pretty naive approach. Checks if pane content ends with the bash prompt suff
 
 ## Contributing
 
-Contributions to this repository are welcome. See the [contribution guidelines](contributing.md) for more information.
+Feel free to open an issue if you have ideas on how to make this GitHub action better or if you want to report a bug! All contributions are welcome. :rocket: Please consult the [contribution guidelines](CONTRIBUTING.md) for more information.
 
 ## License
 
@@ -89,4 +89,4 @@ Contributions to this repository are welcome. See the [contribution guidelines](
 
 ## References
 
--   Icon created with svg made by [@Eucalyp](https://www.flaticon.com/authors/chanut) from [www.flaticon.com](https://www.flaticon.com/authors/eucalyp)
+Icon created with svg made by [@chanut](https://www.flaticon.com/authors/chanut) from [www.flaticon.com](https://www.flaticon.com/authors/chanut)
