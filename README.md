@@ -12,9 +12,9 @@ Notification is via libnotify and visual bell raised in the tmux window. Visual 
 
 ## Use cases
 
--   When you have already started a process in a pane and wish to be notified, that is when you can't use a manual trigger.
--   Working in different containers (Docker) -> can't choose the shell -> and can't use a shell level feature
--   Working over ssh, but your tmux is on the client-side
+- When you have already started a process in a pane and wish to be notified, that is when you can't use a manual trigger.
+- Working in different containers (Docker) -> can't choose the shell -> and can't use a shell level feature
+- Working over ssh, but your tmux is on the client-side
 
 ## Install
 
@@ -36,9 +36,9 @@ Use `prefix + I` to install.
 
 ## Pre-requisites
 
--   Linux (Only tested on linux machines)
--   bash
--   tmux
+- Linux (Only tested on linux machines)
+- bash
+- tmux
 
 ## Configuration
 
@@ -50,16 +50,16 @@ Put `set -g @tnotify-verbose 'on'` in the `.tmux.conf` config file to enable thi
 
 #### Change the verbose notification message
 
-To change the verbose notification text, put `set -g @tnotify-verbose-msg 'put your notification text here'` in the `.tmux.conf\` config file. You can use all the tmux variables in your notification text. Some useful tmux aliases are:
+To change the verbose notification text, put `set -g @tnotify-verbose-msg 'put your notification text here'` in the `.tmux.conf` config file. You can use all the tmux variables in your notification text. Some useful tmux aliases are:
 
--   `#D`: Pane id
--   `#P`: Pane index
--   `#T`: Pane title
--   `#S`: Session name
--   `#I`: Window index
--   `#W`: Window name
+- `#D`: Pane id
+- `#P`: Pane index
+- `#T`: Pane title
+- `#S`: Session name
+- `#I`: Window index
+- `#W`: Window name
 
-For the full list of aliases and variables you are referred to the `FORMATS`  section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html).
+For the full list of aliases and variables you are referred to the `FORMATS` section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html).
 
 ### Change monitor update period
 
