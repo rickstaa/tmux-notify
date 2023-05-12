@@ -10,18 +10,15 @@ source "$CURRENT_DIR/variables.sh"
 
 ## Functions
 
+# Send notification
 notify() {
-  # Try multiple notification systems
-  # Linux (notify-send)
-  if command -v notify-send &>/dev/null
-  then
+  # Switch notification method based on OS
+  if [[ "$OSTYPE" =~ ^darwin ]]; then # If macOS
+    osascript -e 'display notification "'"$1"'" with title "tmux-notify"'
+  else
     # notify-send does not always work due to changing dbus params
     # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
     notify-send "$1"
-  # macOS (osascript)
-  elif command -v osascript &>/dev/null
-  then
-    osascript -e 'display notification "'"$1"'" with title "tmux-notify"'
   fi
 
   # trigger visual bell
@@ -30,6 +27,7 @@ notify() {
   tmux split-window "echo -e \"\a\" && exit"
 }
 
+# Handle cancelation of monitor job
 on_cancel()
 {
   # Wait a bit for all pane monitors to complete
