@@ -74,7 +74,7 @@ Put `set -g @tnotify-sleep-duration 'desired duration" in the`.tmux.conf\` file 
 
 ### Add additional shell suffixes
 
-The tmux notify script uses your shell prompt suffix to check whether a command has finished. It looks for the `$`, `#` and `%` suffixes by default. If you customise your shell to use different shell suffixes, you can add them by putting `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here" in the`.tmux.conf\` file.
+The tmux notify script uses your shell prompt suffix to check whether a command has finished. It looks for the `$`, `#` and `%` suffixes by default. If you customise your shell to use different shell suffixes, you can add them by putting `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the`.tmux.conf\` file.
 
 Feel free to open [a pull](https://github.com/ChanderG/tmux-notify/pulls) request or [issue](https://github.com/ChanderG/tmux-notify/issues) if you think your shell prompt suffix should be included by default.
 
