@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 ## -- Start monitoring script
 
-# Script globals
-PROMPT_SUFFIXES="\$|#|%"
-
 # Get current directory
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
