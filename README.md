@@ -36,8 +36,12 @@ Use `prefix + I` to install.
 
 ## Pre-requisites
 
-bash, notify-send on the machine with the tmux server.
-Tested only on Linux.
+- Bash
+- Tmux
+- `notify-send` or `osascript`.
+
+> **Note**
+>  Works on Linux and macOS (note: only actively tested on Linux).
 
 ## Configuration
 
@@ -49,7 +53,7 @@ Put `set -g @tnotify-verbose 'on'` in `.tmux.conf` to enable this.
 
 #### Change the verbose notification message
 
-To change the verbose notifaction text put `set -g @tnotify-verbose-msg 'put your notification text here'` in `.tmux.conf`. You can use all the tmux variables in your notification text. Some useful tmux aliases are:
+To change the verbose notification text put `set -g @tnotify-verbose-msg 'put your notification text here'` in `.tmux.conf`. You can use all the tmux variables in your notification text. Some useful tmux aliases are:
 
 -   `#D`: Pane id
 -   `#P`: Pane index
@@ -58,7 +62,7 @@ To change the verbose notifaction text put `set -g @tnotify-verbose-msg 'put you
 -   `#I`: Window index
 -   `#W`: Window name
 
-For the full list of aliases and variables you are refered to the `FORMATS`  section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html).
+For the full list of aliases and variables you are referred to the `FORMATS`  section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html).
 
 ### Change monitor update period
 

@@ -10,6 +10,24 @@ source "$CURRENT_DIR/variables.sh"
 
 ## Functions
 
+# Send notification
+notify() {
+  # Switch notification method based on OS
+  if [[ "$OSTYPE" =~ ^darwin ]]; then # If macOS
+    osascript -e 'display notification "'"$1"'" with title "tmux-notify"'
+  else
+    # notify-send does not always work due to changing dbus params
+    # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
+    notify-send "$1"
+  fi
+
+  # trigger visual bell
+  # your terminal emulator can be setup to set URGENT bit on visual bell
+  # for eg, Xresources -> URxvt.urgentOnBell: true
+  tmux split-window "echo -e \"\a\" && exit"
+}
+
+# Handle cancelation of monitor job
 on_cancel()
 {
   # Wait a bit for all pane monitors to complete
@@ -57,24 +75,16 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
 
     # run tests to determine if work is done
     # if so, break and notify
-    lc=$(echo "$output" | tail -c2)
-    case $lc in
-    "$" | "#" | "%")
+    if echo "$output" | tail -n2 | grep -e '\$\|#\|%' &> /dev/null; then
       # tmux display-message "$@"
       if [[ "$1" == "refocus" ]]; then
         tmux switch -t \$"$SESSION_ID"
         tmux select-window -t @"$WINDOW_ID"
         tmux select-pane -t %"$PANE_ID"
       fi
-      # notify-send does not always work due to changing dbus params
-      # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
-      notify-send "$complete_message"
-      # trigger visual bell
-      # your terminal emulator can be setup to set URGENT bit on visual bell
-      # for eg, Xresources -> URxvt.urgentOnBell: true
-      tmux split-window "echo -e \"\a\" && exit"
+      notify "$complete_message"
       break
-    esac
+    fi
 
     # Sleep for a given time
     monitor_sleep_duration_value=$(get_tmux_option "$monitor_sleep_duration" "$monitor_sleep_duration_default")
