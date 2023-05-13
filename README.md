@@ -36,9 +36,12 @@ Use `prefix + I` to install.
 
 ## Pre-requisites
 
-- Linux (Only tested on linux machines)
-- bash
-- tmux
+- Bash
+- Tmux
+- `notify-send` or `osascript`.
+
+> **Note**
+> Works on Linux and macOS (note: only actively tested on Linux).
 
 ## Configuration
 
@@ -65,13 +68,13 @@ For the full list of aliases and variables you are referred to the `FORMATS` sec
 
 By default, the monitor sleep period is set to 10 seconds. This means that tmux-notify checks the pane activity every 10 seconds.
 
-Put `set -g @tnotify-sleep-duration 'desired duration" in the `.tmux.conf\` file to change this duration.
+Put `set -g @tnotify-sleep-duration 'desired duration" in the`.tmux.conf\` file to change this duration.
 
 **NOTE:** Keep in mind that there is a trade-off between notification speed (short sleep duration) and the amount of memory this tool needs.
 
 ### Add additional shell suffixes
 
-The tmux notify script uses your shell prompt suffix to check whether a command has finished. It looks for the `$`, `#` and `%` suffixes by default. If you customise your shell to use different shell suffixes, you can add them by putting `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here" in the `.tmux.conf\` file.
+The tmux notify script uses your shell prompt suffix to check whether a command has finished. It looks for the `$`, `#` and `%` suffixes by default. If you customise your shell to use different shell suffixes, you can add them by putting `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here" in the`.tmux.conf\` file.
 
 Feel free to open [a pull](https://github.com/ChanderG/tmux-notify/pulls) request or [issue](https://github.com/ChanderG/tmux-notify/issues) if you think your shell prompt suffix should be included by default.
 
