@@ -57,7 +57,7 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   echo "$$" > "$PID_FILE_PATH"
 
   # Display tnotify start messsage
-  tmux display-message "Montoring pane..."
+  tmux display-message "Monitoring pane..."
 
   # Construct tnotify finish message
   if verbose_enabled; then  # If @tnotify-verbose is disabled

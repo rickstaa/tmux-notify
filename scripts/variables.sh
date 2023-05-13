@@ -2,8 +2,11 @@
 ## -- Add tmux plugin variables
 
 ## Main variables
-export SUPPORTED_VERSION="1.9"
-export PID_DIR=~/.tmux/notify
+if [[ -z $XDG_STATE_HOME ]]; then
+    export PID_DIR=~/.tmux/notify
+else
+    export PID_DIR="$XDG_STATE_HOME/tmux/tmux-notify"
+fi
 
 # Get ID's
 export SESSION_ID=$(tmux display-message -p '#{session_id}'  | tr -d $)
