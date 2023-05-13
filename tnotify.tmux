@@ -2,7 +2,13 @@
 
 # Get current directory
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PID_DIR="$XDG_CACHE_HOME/tmux/tmux-notify"
+
+# Set PID_DIR
+if [[ -z $XDG_CACHE_HOME ]]; then
+    export PID_DIR=~/.tmux/notify
+else
+    export PID_DIR="$XDG_CACHE_HOME/tmux/tmux-notify"
+fi
 
 # Initialize variables
 source "$CURRENT_DIR/scripts/helpers.sh"
