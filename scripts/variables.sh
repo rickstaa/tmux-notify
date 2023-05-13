@@ -2,10 +2,10 @@
 ## -- Add tmux plugin variables
 
 ## Main variables
-if [[ -z $XDG_STATE_HOME ]]; then
+if [[ -z $XDG_CACHE_HOME ]]; then
     export PID_DIR=~/.tmux/notify
 else
-    export PID_DIR="$XDG_STATE_HOME/tmux/tmux-notify"
+    export PID_DIR="$XDG_CACHE_HOME/tmux/tmux-notify"
 fi
 
 # Get ID's
