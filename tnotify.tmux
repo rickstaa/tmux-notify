@@ -5,9 +5,9 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Set PID_DIR
 if [[ -z $XDG_CACHE_HOME ]]; then
-    export PID_DIR=~/.tmux/notify
+  export PID_DIR=~/.tmux/notify
 else
-    export PID_DIR="$XDG_CACHE_HOME/tmux/tmux-notify"
+  export PID_DIR="$XDG_CACHE_HOME/tmux/tmux-notify"
 fi
 
 # Initialize variables
