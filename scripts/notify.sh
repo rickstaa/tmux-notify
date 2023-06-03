@@ -37,11 +37,11 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   tmux display-message "Monitoring pane..."
   
   # Construct tnotify finish message
-  if verbose_enabled; then  # If @tnotify-verbose is disabled
-    complete_message="Tmux pane task completed!"
-  else  # If @tnotify-verbose is enabled
+  if verbose_enabled; then  # If @tnotify-verbose is enabled
     verbose_msg_value="$(get_tmux_option "$verbose_msg_option" "$verbose_msg_default")"
     complete_message=$(tmux display-message -p "$verbose_msg_value")
+  else  # If @tnotify-verbose is disabled
+    complete_message="Tmux pane task completed!"
   fi
   
   # Create bash suffix list
@@ -68,7 +68,7 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
         tmux select-window -t @"$WINDOW_ID"
         tmux select-pane -t %"$PANE_ID"
       fi
-      notify "$complete_message"
+      notify "$complete_message" $1
       break
     fi
     

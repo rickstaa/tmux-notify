@@ -31,5 +31,7 @@ export monitor_sleep_duration_default=10
 # Telegram settings
 export tmux_notify_telegram_bot_id="@tnotify-telegram-bot-id"
 export tmux_notify_telegram_channel_id="@tnotify-telegram-channel-id"
+export tmux_notify_telegram_all="@tnotify-telegram-all"
 export tmux_notify_telegram_bot_id_default=""
 export tmux_notify_telegram_channel_id_default=""
+export tmux_notify_telegram_all_default="off"
