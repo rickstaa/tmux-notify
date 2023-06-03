@@ -8,13 +8,13 @@
 
 Tmux plugin to notify you when processes are complete.
 
-Notification is via libnotify and visual bell raised in the tmux window. Visual bells can be mapped (in the terminal level) to X11 urgency bit and handled by your window manager.
+Notifications are done via libnotify, and visual bells are raised in the tmux window. Visual bells can be mapped (in the terminal level) to X11 urgency bit and handled by your window manager.
 
 ## Use cases
 
 - When you have already started a process in a pane and wish to be notified, that is when you can't use a manual trigger.
-- Working in different containers (Docker) -> can't choose the shell -> and can't use a shell level feature
-- Working over ssh, but your tmux is on the client-side
+- Working in different containers (Docker) -> can't choose the shell -> and can't use a shell-level feature
+- Working over ssh, but your Tmux is on the client-side
 
 ## Install
 
@@ -28,15 +28,11 @@ Use `prefix + I` to install.
 
 ## Usage
 
-`prefix + m`: Start monitoring a pane and notify when it finishes.
+- `prefix + m`: Start monitoring a pane and notify when it finishes.
 
-`prefix + alt + m`: Start monitoring a pane, return it in focus and notify when it finishes.
+- `prefix + alt + m`: Start monitoring a pane, return it in focus and notify when it finishes.
 
-`prefix + ctrl + M`: Start monitoring pane and notify in bash and telegram when it finishes.
-
-`prefix + ctrl + alt + M`: Start monitoring a pane, return it in focus and notify in bash and telegram when it finishes.
-
-`prefix + M`: Cancel monitoring of a pane.
+- `prefix + M`: Cancel monitoring of a pane.
 
 ## Pre-requisites
 
@@ -51,13 +47,13 @@ Use `prefix + I` to install.
 
 ### Enable verbose notification
 
-By default, the notification text is set to `Tmux pane task completed!`. We have also included a verbose output option. When enabled, information about the pane, window, and session the task has completed is given.
+The notification text is defaulted to `Tmux pane task completed!`. We have also included a verbose output option. Information about the pane, window, and session the task has completed is given when enabled.
 
-Put `set -g @tnotify-verbose 'on'` in the `.tmux.conf` config file to enable this.
+To enable this, put `set -g @tnotify-verbose 'on'` in the `.tmux.conf` config file.
 
 #### Change the verbose notification message
 
-To change the verbose notification text, put `set -g @tnotify-verbose-msg 'put your notification text here'` in the `.tmux.conf` config file. You can use all the tmux variables in your notification text. Some useful tmux aliases are:
+To change the verbose notification text, put `set -g @tnotify-verbose-msg 'put your notification text here'` in the `.tmux.conf` config file. You can use all the Tmux variables in your notification text. Some useful Tmux aliases are:
 
 - `#D`: Pane id
 - `#P`: Pane index
@@ -66,23 +62,33 @@ To change the verbose notification text, put `set -g @tnotify-verbose-msg 'put y
 - `#I`: Window index
 - `#W`: Window name
 
-For the full list of aliases and variables you are referred to the `FORMATS` section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html).
+For the complete list of aliases and variables, you are referred to the `FORMATS` section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html).
 
 ### Enable telegram channel notifications
 
-To enable telegram channel notifications, put `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file. You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot. After this, you can use the telegram keybindings in the [usage](#usage) section to start a monitor with telegram channel notifications.
+By default, the notification is only sent to the operating system. We have also included a telegram channel notification option. When enabled, a notification is sent to a user-specified telegram channel.
+
+Put both `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file to enable this. Additionally, you can use the `set -g @tnotify-telegram-all 'on'` option to send all notifications to telegram. After enabling this option, the following key bindings are available:
+
+- `prefix + ctrl + M`: Start monitoring pane and notify in bash and telegram when it finishes.
+
+- `prefix + ctrl + alt + M`: Start monitoring a pane, return it in focus and notify in bash and telegram when it finishes.
+
+> **Note**
+> You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
 
 ### Change monitor update period
 
 By default, the monitor sleep period is set to 10 seconds. This means that tmux-notify checks the pane activity every 10 seconds.
 
-Put `set -g @tnotify-sleep-duration 'desired duration" in the`.tmux.conf\` file to change this duration.
+Put `set -g @tnotify-sleep-duration 'desired duration'` in the `.tmux.conf` file to change this duration.
 
-**NOTE:** Keep in mind that there is a trade-off between notification speed (short sleep duration) and the amount of memory this tool needs.
+> **Warning**
+> Remember that there is a trade-off between notification speed (short sleep duration) and the amount of memory this tool needs.
 
 ### Add additional shell suffixes
 
-The tmux notify script uses your shell prompt suffix to check whether a command has finished. It looks for the `$`, `#` and `%` suffixes by default. If you customise your shell to use different shell suffixes, you can add them by putting `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the`.tmux.conf` file.
+The Tmux notify script uses your shell prompt suffix to check whether a command has finished. By default, it looks for the `$`, `#` and `%` suffixes. If you customise your shell to use different shell suffixes, you can add them by putting `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the `.tmux.conf` file.
 
 Feel free to open [a pull](https://github.com/ChanderG/tmux-notify/pulls) request or [issue](https://github.com/ChanderG/tmux-notify/issues) if you think your shell prompt suffix should be included by default.
 
