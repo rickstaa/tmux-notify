@@ -80,11 +80,7 @@ Feel free to open [a pull](https://github.com/ChanderG/tmux-notify/pulls) reques
 
 ### Enable telegram channel notifications
 
-<<<<<<< HEAD
 To enable telegram channel notifications, put `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file. You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
-=======
-To enable telegram channel notifications, put `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel name'` in the `.tmux.conf` config file. You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
->>>>>>> 00184ac2f66d7912c094d6a41f68529da304f44e
 
 ## How does it work
 
