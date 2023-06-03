@@ -27,3 +27,9 @@ export verbose_msg_default="(#S, #I:#P) Tmux pane task completed!"
 # Monitor checker interval
 export monitor_sleep_duration="@tnotify-sleep-duration"
 export monitor_sleep_duration_default=10
+
+# Telegram settings
+export tmux_notify_telegram_bot_id="@tnotify-telegram-bot-id"
+export tmux_notify_telegram_channel_id="@tnotify-telegram-channel-id"
+export tmux_notify_telegram_bot_id_default=""
+export tmux_notify_telegram_channel_id_default=""

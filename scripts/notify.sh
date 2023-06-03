@@ -10,23 +10,6 @@ source "${CURRENT_DIR}/variables.sh"
 
 ## Functions
 
-# Send notification
-notify() {
-  # Switch notification method based on OS
-  if [[ "$OSTYPE" =~ ^darwin ]]; then # If macOS
-    osascript -e 'display notification "'"$1"'" with title "tmux-notify"'
-  else
-    # notify-send does not always work due to changing dbus params
-    # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
-    notify-send "$1"
-  fi
-  
-  # trigger visual bell
-  # your terminal emulator can be setup to set URGENT bit on visual bell
-  # for eg, Xresources -> URxvt.urgentOnBell: true
-  tmux split-window "echo -e \"\a\" && exit"
-}
-
 # Handle cancelation of monitor job
 on_cancel()
 {
@@ -41,12 +24,6 @@ on_cancel()
   exit 0
 }
 trap 'on_cancel' TERM
-
-# Check if verbose option is enabled
-verbose_enabled() {
-  local verbose_value="$(get_tmux_option "$verbose_option" "$verbose_default")"
-  [ "$verbose_value" != "on" ]
-}
 
 ## Main script
 

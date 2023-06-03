@@ -78,6 +78,10 @@ The tmux notify script uses your shell prompt suffix to check whether a command 
 
 Feel free to open [a pull](https://github.com/ChanderG/tmux-notify/pulls) request or [issue](https://github.com/ChanderG/tmux-notify/issues) if you think your shell prompt suffix should be included by default.
 
+### Enable telegram channel notifications
+
+To enable telegram channel notifications, put `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel name'` in the `.tmux.conf` config file. You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
+
 ## How does it work
 
 The pretty naive approach. Checks if pane content ends with the bash prompt suffixes mentioned above every 10 seconds.
