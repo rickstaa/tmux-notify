@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Usage: notify <refocus> <telegram>
 ## -- Start monitoring script
 
 # Get current directory
@@ -9,23 +10,6 @@ source "${CURRENT_DIR}/helpers.sh"
 source "${CURRENT_DIR}/variables.sh"
 
 ## Functions
-
-# Send notification
-notify() {
-  # Switch notification method based on OS
-  if [[ "$OSTYPE" =~ ^darwin ]]; then # If macOS
-    osascript -e 'display notification "'"$1"'" with title "tmux-notify"'
-  else
-    # notify-send does not always work due to changing dbus params
-    # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
-    notify-send "$1"
-  fi
-  
-  # trigger visual bell
-  # your terminal emulator can be setup to set URGENT bit on visual bell
-  # for eg, Xresources -> URxvt.urgentOnBell: true
-  tmux split-window "echo -e \"\a\" && exit"
-}
 
 # Handle cancelation of monitor job
 on_cancel()
@@ -42,12 +26,6 @@ on_cancel()
 }
 trap 'on_cancel' TERM
 
-# Check if verbose option is enabled
-verbose_enabled() {
-  local verbose_value="$(get_tmux_option "$verbose_option" "$verbose_default")"
-  [ "$verbose_value" != "on" ]
-}
-
 ## Main script
 
 # Monitor pane if it is not already monitored
@@ -60,11 +38,11 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   tmux display-message "Monitoring pane..."
   
   # Construct tnotify finish message
-  if verbose_enabled; then  # If @tnotify-verbose is disabled
-    complete_message="Tmux pane task completed!"
-  else  # If @tnotify-verbose is enabled
+  if verbose_enabled; then  # If @tnotify-verbose is enabled
     verbose_msg_value="$(get_tmux_option "$verbose_msg_option" "$verbose_msg_default")"
     complete_message=$(tmux display-message -p "$verbose_msg_value")
+  else  # If @tnotify-verbose is disabled
+    complete_message="Tmux pane task completed!"
   fi
   
   # Create bash suffix list
@@ -86,12 +64,12 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     # if so, break and notify
     if echo "$output" | tail -n2 | grep -e $prompt_suffixes &> /dev/null; then
       # tmux display-message "$@"
-      if [[ "$1" == "refocus" ]]; then
+      if [[ "$1" == "true" ]]; then
         tmux switch -t \$"$SESSION_ID"
         tmux select-window -t @"$WINDOW_ID"
         tmux select-pane -t %"$PANE_ID"
       fi
-      notify "$complete_message"
+      notify "$complete_message" $2
       break
     fi
     
