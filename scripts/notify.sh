@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Usage: notify <refocus> <telegram>
 ## -- Start monitoring script
 
 # Get current directory
@@ -63,12 +64,12 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     # if so, break and notify
     if echo "$output" | tail -n2 | grep -e $prompt_suffixes &> /dev/null; then
       # tmux display-message "$@"
-      if [[ "$1" == "refocus" ]]; then
+      if [[ "$1" == "true" ]]; then
         tmux switch -t \$"$SESSION_ID"
         tmux select-window -t @"$WINDOW_ID"
         tmux select-pane -t %"$PANE_ID"
       fi
-      notify "$complete_message" $1
+      notify "$complete_message" $2
       break
     fi
     

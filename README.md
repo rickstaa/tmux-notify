@@ -32,6 +32,10 @@ Use `prefix + I` to install.
 
 `prefix + alt + m`: Start monitoring a pane, return it in focus and notify when it finishes.
 
+`prefix + ctrl + M`: Start monitoring pane and notify in bash and telegram when it finishes.
+
+`prefix + ctrl + alt + M`: Start monitoring a pane, return it in focus and notify in bash and telegram when it finishes.
+
 `prefix + M`: Cancel monitoring of a pane.
 
 ## Pre-requisites
@@ -64,6 +68,10 @@ To change the verbose notification text, put `set -g @tnotify-verbose-msg 'put y
 
 For the full list of aliases and variables you are referred to the `FORMATS` section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html).
 
+### Enable telegram channel notifications
+
+To enable telegram channel notifications, put `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file. You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot. After this, you can use the telegram keybindings in the [usage](#usage) section to start a monitor with telegram channel notifications.
+
 ### Change monitor update period
 
 By default, the monitor sleep period is set to 10 seconds. This means that tmux-notify checks the pane activity every 10 seconds.
@@ -77,10 +85,6 @@ Put `set -g @tnotify-sleep-duration 'desired duration" in the`.tmux.conf\` file 
 The tmux notify script uses your shell prompt suffix to check whether a command has finished. It looks for the `$`, `#` and `%` suffixes by default. If you customise your shell to use different shell suffixes, you can add them by putting `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the`.tmux.conf` file.
 
 Feel free to open [a pull](https://github.com/ChanderG/tmux-notify/pulls) request or [issue](https://github.com/ChanderG/tmux-notify/issues) if you think your shell prompt suffix should be included by default.
-
-### Enable telegram channel notifications
-
-To enable telegram channel notifications, put `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file. You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
 
 ## How does it work
 
