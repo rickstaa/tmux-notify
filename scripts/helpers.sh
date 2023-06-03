@@ -3,6 +3,7 @@
 # Additional functions that are used in the main scripts.
 
 # Get tmux option
+# Usage: get_tmux_option <option> <default_value>
 get_tmux_option() {
   local option="$1"
   local default_value="$2"
@@ -15,6 +16,7 @@ get_tmux_option() {
 }
 
 # Set tmux option
+# Usage: set_tmux_option <option> <value>
 set_tmux_option() {
   local option="$1"
   local value="$2"
@@ -22,11 +24,13 @@ set_tmux_option() {
 }
 
 # Escape globbing charaters
+# Usage: escape_glob_chars <string>
 escape_glob_chars() {
   echo "$1" | sed 's/[.[\*^$()+?{|]/\\&/g'
 }
 
 # Send notification
+# Usage: notify <message>
 notify() {
   # Switch notification method based on OS
   if [[ "$OSTYPE" =~ ^darwin ]]; then # If macOS
@@ -64,6 +68,7 @@ telegram_enabled() {
 }
 
 # Send telegram message
+# Usage: send_telegram_message <bot_id> <chat_id> <message>
 send_telegram_message(){
   curl "https://api.telegram.org/bot$1/sendMessage?chat_id=$2&text=$3" &> /dev/null
 }
