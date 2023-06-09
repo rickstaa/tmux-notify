@@ -1,14 +1,26 @@
-# tmux-notify
+# tmux-notify <!-- omit in toc -->
 
 [![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green)](https://github.com/rickstaa/tmux-notify/pulse)
-[![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)](contributing.md)
+[![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Tmux version](https://img.shields.io/badge/tmux-%3D%3E1.9-blue)](https://github.com/tmux/tmux/wiki)
 
 <a href="https://github.com/rickstaa/tmux-notify"><img src="resources/tmux-notify-logo.svg" alt="tmux notify logo" width="567" height="135"/></a>
 
 Tmux plugin to notify you when processes are complete.
 
-Notifications are sent via [libnotify](https://gitlab.gnome.org/GNOME/libnotify), and visual bells are raised in the tmux window. Visual bells can be mapped (in the terminal level) to the X11 urgency bit and handled by your window manager.
+> **Note**
+> Notifications are sent via [libnotify](https://gitlab.gnome.org/GNOME/libnotify), and visual bells are raised in the tmux window. Visual bells can be mapped (in the terminal level) to the X11 urgency bit and handled by your window manager.
+
+## Table of Contents <!-- omit in toc -->
+
+- [Use cases](#use-cases)
+- [Install](#install)
+- [Usage](#usage)
+- [Pre-requisites](#pre-requisites)
+- [Configuration](#configuration)
+- [How does it work](#how-does-it-work)
+- [Contributing](#contributing)
+- [References](#references)
 
 ## Use cases
 
