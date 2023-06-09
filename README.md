@@ -18,7 +18,13 @@ Tmux plugin to notify you when processes are complete.
 - [Usage](#usage)
 - [Pre-requisites](#pre-requisites)
 - [Configuration](#configuration)
+  - [Enable verbose notification](#enable-verbose-notification)
+  - [Enable telegram channel notifications](#enable-telegram-channel-notifications)
+  - [Change monitor update period](#change-monitor-update-period)
+  - [Add additional shell suffixes](#add-additional-shell-suffixes)
 - [How does it work](#how-does-it-work)
+- [Other use cases](#other-use-cases)
+  - [Use inside a docker container](#use-inside-a-docker-container)
 - [Contributing](#contributing)
 - [References](#references)
 
@@ -107,6 +113,12 @@ Feel free to open [a pull](https://github.com/rickstaa/tmux-notify/pulls) reques
 ## How does it work
 
 A naive approach. Checks if pane content ends with the bash prompt suffixes mentioned above every 10 seconds.
+
+## Other use cases
+
+### Use inside a docker container
+
+Because tmux-notify uses [libnotify](https://gitlab.gnome.org/GNOME/libnotify) to send notifications, it needs access to the host's D-Bus socket. An excellent guide on how to do this can be found [here](https://github.com/mviereck/x11docker/wiki/How-to-connect-container-to-DBus-from-host#dbus-user-session-daemon). You can also check out the [examples/docker](examples/docker/README.md) folder for an example.
 
 ## Contributing
 
