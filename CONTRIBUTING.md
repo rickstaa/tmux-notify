@@ -2,10 +2,10 @@
 
 We love your input! 🚀 We want to make contributing to this project as easy and transparent as possible, whether it's:
 
--   Reporting a bug.
--   Discussing the current state of the code.
--   Submitting a fix.
--   Proposing new features.
+-   [Reporting a bug](https://github.com/rickstaa/tmux-notify/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=).
+-   [Discussing the current state of the code](https://github.com/rickstaa/tmux-notify/discussions).
+-   [Submitting a fix](https://github.com/rickstaa/tmux-notify/compare).
+-   [Proposing new features](https://github.com/rickstaa/tmux-notify/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=).
 -   Becoming a maintainer.
 
 ## We Develop with Github

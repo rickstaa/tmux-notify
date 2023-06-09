@@ -1,10 +1,10 @@
 # tmux-notify
 
-[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green)](https://github.com/ChanderG/tmux-notify/pulse)
+[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green)](https://github.com/rickstaa/tmux-notify/pulse)
 [![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)](contributing.md)
 [![Tmux version](https://img.shields.io/badge/tmux-%3D%3E1.9-blue)](https://github.com/tmux/tmux/wiki)
 
-<a href="https://github.com/ChanderG/tmux-notify"><img src="resources/tmux-notify-logo.svg" alt="tmux notify logo" width="567" height="135"/></a>
+<a href="https://github.com/rickstaa/tmux-notify"><img src="resources/tmux-notify-logo.svg" alt="tmux notify logo" width="567" height="135"/></a>
 
 Tmux plugin to notify you when processes are complete.
 
@@ -20,7 +20,7 @@ Notifications are done via libnotify, and visual bells are raised in the tmux wi
 
 Using [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm), add:
 
-    set -g @plugin 'ChanderG/tmux-notify'
+    set -g @plugin 'rickstaa/tmux-notify'
 
 to your `.tmux.conf`.
 
@@ -90,7 +90,7 @@ Put `set -g @tnotify-sleep-duration 'desired duration'` in the `.tmux.conf` file
 
 The Tmux notify script uses your shell prompt suffix to check whether a command has finished. By default, it looks for the `$`, `#` and `%` suffixes. If you customise your shell to use different shell suffixes, you can add them by putting `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the `.tmux.conf` file.
 
-Feel free to open [a pull](https://github.com/ChanderG/tmux-notify/pulls) request or [issue](https://github.com/ChanderG/tmux-notify/issues) if you think your shell prompt suffix should be included by default.
+Feel free to open [a pull](https://github.com/rickstaa/tmux-notify/pulls) request or [issue](https://github.com/rickstaa/tmux-notify/issues) if you think your shell prompt suffix should be included by default.
 
 ## How does it work
 
@@ -106,4 +106,5 @@ Feel free to open an issue if you have ideas on how to make this GitHub action b
 
 ## References
 
-Icon created with svg made by [@chanut](https://www.flaticon.com/authors/chanut) from [www.flaticon.com](https://www.flaticon.com/authors/chanut)
+- This repository is a **detached fork** from the https://github.com/ChanderG/tmux-notify repository. It was detached because the original repository is no longer maintained.
+- Icon created with svg made by [@chanut](https://www.flaticon.com/authors/chanut) from [www.flaticon.com](https://www.flaticon.com/authors/chanut)
