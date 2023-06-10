@@ -57,6 +57,7 @@ Use `prefix + I` to install.
 - Bash
 - Tmux
 - `notify-send` or `osascript`.
+- `wget` (optional)
 
 > **Note**
 > Works on Linux and macOS (note: only actively tested on Linux).
@@ -84,6 +85,9 @@ For the complete list of aliases and variables, you are referred to the `FORMATS
 
 ### Enable telegram channel notifications
 
+> **Warning**
+> This feature requires [wget](https://www.gnu.org/software/wget/) to be installed on your system.
+
 By default, the notification is only sent to the operating system. We have also included a telegram channel notification option. When enabled, a message is sent to a user-specified telegram channel.
 
 Put both `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file to enable this. After enabling this option, the following key bindings are available:
@@ -93,9 +97,6 @@ Put both `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @t
 - `prefix + ctrl + alt + m`: Start monitoring a pane, return it in focus and notify in bash and telegram when it finishes.
 
 Additionally, you can use the `set -g @tnotify-telegram-all 'on'` option to send all notifications to telegram. 
-
-> **Warning**
-> This feature requires [wget](https://www.gnu.org/software/wget/) to be installed on your system.
 
 > **Note**
 > You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
@@ -111,9 +112,9 @@ Put `set -g @tnotify-sleep-duration 'desired duration'` in the `.tmux.conf` file
 
 ### Add additional shell suffixes
 
-The Tmux notify script uses your shell prompt suffix to check whether a command has finished. By default, it looks for the `$`, `#` and `%` suffixes. Additionally, suffixes can be added by putting `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the .tmux.conf file.
+The Tmux notify script uses your shell prompt suffix to check whether a command has finished. By default, it looks for the `$`, `#` and `%` suffixes. Additional suffixes can be added by putting `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the .tmux.conf file.
 
->> **Note**
+> **Note**
 > Feel free to open [a pull](https://github.com/rickstaa/tmux-notify/pulls) request or [issue](https://github.com/rickstaa/tmux-notify/issues) if you think your shell prompt suffix should be included by default.
 
 ## How does it work
