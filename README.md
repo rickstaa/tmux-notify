@@ -90,7 +90,7 @@ For the complete list of aliases and variables, you are referred to the `FORMATS
 
 By default, the notification is only sent to the operating system. We have also included a telegram channel notification option. When enabled, a message is sent to a user-specified telegram channel.
 
-Put both `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file to enable this. After enabling this option, the following key bindings are available:
+Put `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file to enable this. After enabling this option, the following key bindings are available:
 
 - `prefix + ctrl + m`: Start monitoring pane and notify in bash and telegram when it finishes.
 
@@ -112,7 +112,9 @@ Put `set -g @tnotify-sleep-duration 'desired duration'` in the `.tmux.conf` file
 
 ### Add additional shell suffixes
 
-The Tmux notify script uses your shell prompt suffix to check whether a command has finished. By default, it looks for the `$`, `#` and `%` suffixes. Additional suffixes can be added by putting `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the .tmux.conf file.
+The Tmux notify script uses your shell prompt suffix to check whether a command has finished. By default, it looks for the `$`, `#` and `%` suffixes. 
+
+Put `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the `.tmux.conf` file to add additional suffixes.
 
 > **Note**
 > Feel free to open [a pull](https://github.com/rickstaa/tmux-notify/pulls) request or [issue](https://github.com/rickstaa/tmux-notify/issues) if you think your shell prompt suffix should be included by default.
