@@ -88,9 +88,12 @@ By default, the notification is only sent to the operating system. We have also 
 
 Put both `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file to enable this. Additionally, you can use the `set -g @tnotify-telegram-all 'on'` option to send all notifications to telegram. After enabling this option, the following key bindings are available:
 
-- `prefix + ctrl + M`: Start monitoring pane and notify in bash and telegram when it finishes.
+- `prefix + ctrl + m`: Start monitoring pane and notify in bash and telegram when it finishes.
 
-- `prefix + ctrl + alt + M`: Start monitoring a pane, return it in focus and notify in bash and telegram when it finishes.
+- `prefix + ctrl + alt + m`: Start monitoring a pane, return it in focus and notify in bash and telegram when it finishes.
+
+> **Warning**
+> This feature requires [wget](https://www.gnu.org/software/wget/) to be installed on your system.
 
 > **Note**
 > You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
