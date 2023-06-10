@@ -9,19 +9,19 @@
 Tmux plugin to notify you when processes are complete.
 
 > **Note**
-> Notifications are sent via [libnotify](https://gitlab.gnome.org/GNOME/libnotify), and visual bells are raised in the tmux window. Visual bells can be mapped (in the terminal level) to the X11 urgency bit and handled by your window manager.
+> Notifications are sent via [libnotify](https://gitlab.gnome.org/GNOME/libnotify), and visual bells are raised in the Tmux window. Visual bells can be mapped (in the terminal level) to the X11 urgency bit and handled by your window manager.
 
 ## Table of Contents <!-- omit in toc -->
 
 - [Use cases](#use-cases)
+- [Pre-requisites](#pre-requisites)
 - [Install](#install)
 - [Usage](#usage)
-- [Pre-requisites](#pre-requisites)
 - [Configuration](#configuration)
   - [Enable verbose notification](#enable-verbose-notification)
-  - [Enable telegram channel notifications](#enable-telegram-channel-notifications)
   - [Change monitor update period](#change-monitor-update-period)
   - [Add additional shell suffixes](#add-additional-shell-suffixes)
+  - [Enable telegram channel notifications](#enable-telegram-channel-notifications)
 - [How does it work](#how-does-it-work)
 - [Other use cases](#other-use-cases)
   - [Use inside a docker container](#use-inside-a-docker-container)
@@ -32,7 +32,17 @@ Tmux plugin to notify you when processes are complete.
 
 - When you have already started a process in a pane and wish to be notified (i.e. you can't use a manual trigger).
 - Working in different containers (Docker) -> can't choose the shell -> and can't use a shell-level feature.
-- Working over ssh, but your Tmux is on the client-side.
+- Working over ssh, but your Tmux is on the client side.
+
+## Pre-requisites
+
+- Bash
+- Tmux
+- `notify-send` or `osascript`.
+- **Optional**: `wget` (for telegram notifications).
+
+> **Note**
+> Works on Linux and macOS (note: only actively tested on Linux).
 
 ## Install
 
@@ -52,23 +62,13 @@ Use `prefix + I` to install.
 
 - `prefix + M`: Cancel monitoring of a pane.
 
-## Pre-requisites
-
-- Bash
-- Tmux
-- `notify-send` or `osascript`.
-- `wget` (optional)
-
-> **Note**
-> Works on Linux and macOS (note: only actively tested on Linux).
-
 ## Configuration
 
 ### Enable verbose notification
 
-The notification text is defaulted to `Tmux pane task completed!`. We have also included a verbose output option. Information about the pane, window, and session the task has completed is given when enabled.
+The default notification text is `Tmux pane task completed!`. This tool also contains a verbose output option which gives more information about the pane, window, and session the task has completed.
 
-To enable this, put `set -g @tnotify-verbose 'on'` in the `.tmux.conf` config file.
+> To enable this, put `set -g @tnotify-verbose 'on'` in the `.tmux.conf` config file.
 
 #### Change the verbose notification message
 
@@ -83,14 +83,35 @@ To change the verbose notification text, put `set -g @tnotify-verbose-msg 'put y
 
 For the complete list of aliases and variables, you are referred to the `FORMATS` section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html).
 
+
+### Change monitor update period
+
+By default, the monitor sleep period is set to 10 seconds. This means that tmux-notify checks the pane activity every 10 seconds.
+
+> Put `set -g @tnotify-sleep-duration 'desired duration'` in the `.tmux.conf` file to change this duration.
+
+> **Warning**
+> Remember that there is a trade-off between notification speed (short sleep duration) and the amount of memory this tool needs.
+
+### Add additional shell suffixes
+
+The Tmux notify script uses your shell prompt suffix to check whether a command has finished. By default, it looks for the `$`, `#` and `%` suffixes. 
+
+> Put `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the `.tmux.conf` file to add additional suffixes.
+
+> **Note**
+> Feel free to open [a pull](https://github.com/rickstaa/tmux-notify/pulls) request or [issue](https://github.com/rickstaa/tmux-notify/issues) if you think your shell prompt suffix should be included by default.
+
 ### Enable telegram channel notifications
 
 > **Warning**
 > This feature requires [wget](https://www.gnu.org/software/wget/) to be installed on your system.
 
-By default, the notification is only sent to the operating system. We have also included a telegram channel notification option. When enabled, a message is sent to a user-specified telegram channel.
+By default, the tool only sent operating system notifications. It can, however, also send a message to a user-specified telegram channel.
 
-Put `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file to enable this. After enabling this option, the following key bindings are available:
+> Put `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file to enable this. 
+
+After enabling this option, the following key bindings are available:
 
 - `prefix + ctrl + m`: Start monitoring pane and notify in bash and telegram when it finishes.
 
@@ -100,24 +121,6 @@ Additionally, you can use the `set -g @tnotify-telegram-all 'on'` option to send
 
 > **Note**
 > You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
-
-### Change monitor update period
-
-By default, the monitor sleep period is set to 10 seconds. This means that tmux-notify checks the pane activity every 10 seconds.
-
-Put `set -g @tnotify-sleep-duration 'desired duration'` in the `.tmux.conf` file to change this duration.
-
-> **Warning**
-> Remember that there is a trade-off between notification speed (short sleep duration) and the amount of memory this tool needs.
-
-### Add additional shell suffixes
-
-The Tmux notify script uses your shell prompt suffix to check whether a command has finished. By default, it looks for the `$`, `#` and `%` suffixes. 
-
-Put `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the `.tmux.conf` file to add additional suffixes.
-
-> **Note**
-> Feel free to open [a pull](https://github.com/rickstaa/tmux-notify/pulls) request or [issue](https://github.com/rickstaa/tmux-notify/issues) if you think your shell prompt suffix should be included by default.
 
 ## How does it work
 
