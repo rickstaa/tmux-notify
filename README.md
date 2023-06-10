@@ -74,6 +74,9 @@ Put both `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @t
 
 - `prefix + ctrl + alt + M`: Start monitoring a pane, return it in focus and notify in bash and telegram when it finishes.
 
+> **Warning**
+> This feature requires [wget](https://www.gnu.org/software/wget/) to be installed on your system.
+
 > **Note**
 > You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
 

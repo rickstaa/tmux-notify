@@ -51,7 +51,7 @@ telegram_available() {
 # Send telegram message
 # Usage: send_telegram_message <bot_id> <chat_id> <message>
 send_telegram_message() {
-  curl "https://api.telegram.org/bot$1/sendMessage?chat_id=$2&text=$3" &> /dev/null
+  wget --spider "https://api.telegram.org/bot$1/sendMessage?chat_id=$2&text=${3// /%20}" &> /dev/null
 }
 
 # Send notification
@@ -71,7 +71,7 @@ notify() {
   if telegram_available && (telegram_all_enabled || [ "$2" == "true" ]); then
     telegram_bot_id="$(get_tmux_option "$tmux_notify_telegram_bot_id" "$tmux_notify_telegram_bot_id_default")"
     telegram_chat_id="$(get_tmux_option "$tmux_notify_telegram_channel_id" "$tmux_notify_telegram_channel_id_default")"
-    send_telegram_message $telegram_bot_id $telegram_chat_id "$1" &> /dev/null
+    send_telegram_message $telegram_bot_id $telegram_chat_id "$1"
   fi
   
   # trigger visual bell
