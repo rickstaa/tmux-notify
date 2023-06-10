@@ -134,7 +134,7 @@ Because tmux-notify uses [libnotify](https://gitlab.gnome.org/GNOME/libnotify) t
 
 ## Contributing
 
-Feel free to open an issue if you have ideas on how to make this GitHub action better or if you want to report a bug! All contributions are welcome. :rocket: Please consult the [contribution guidelines](CONTRIBUTING.md) for more information.
+Feel free to open an issue if you have ideas on how to make this GitHub action better or if you want to report a bug! All contributions are welcome :rocket:. Please consult the [contribution guidelines](CONTRIBUTING.md) for more information.
 
 ## References
 
