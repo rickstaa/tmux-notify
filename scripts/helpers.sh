@@ -51,7 +51,7 @@ telegram_available() {
 # Send telegram message
 # Usage: send_telegram_message <bot_id> <chat_id> <message>
 send_telegram_message() {
-  curl "https://api.telegram.org/bot$1/sendMessage?chat_id=$2&text=$3" &> /dev/null
+  wget "https://api.telegram.org/bot$1/sendMessage?chat_id=$2&text=$3" &> /dev/null
 }
 
 # Send notification
