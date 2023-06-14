@@ -78,10 +78,17 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     sleep "$monitor_sleep_duration_value"
   done
   
-  # job done - remove pid file and return
+  # job done - remove pid file
   if [[ -f "$PID_FILE_PATH" ]]; then
     rm "$PID_FILE_PATH"
   fi
+  
+  # Execute custom command if specified by user
+  custom_command="$(get_tmux_option "$custom_notify_command" "$custom_notify_command_default")"
+  if [[ -n "$custom_command" ]]; then
+    eval "${custom_command}"
+  fi
+  
   exit 0
 else  # If pane is already being monitored
   
