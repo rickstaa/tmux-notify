@@ -33,7 +33,7 @@ tmux bind-key C-m run-shell -b "$CURRENT_DIR/scripts/notify.sh false true"
 tmux bind-key C-M-m run-shell -b "$CURRENT_DIR/scripts/notify.sh true true"
 
 # Print deprecated message
-deprication_warning="'ChanderG/tmux-notify' is no longer maintained. Please switch to 'rickstaa/tmux-notify'."
+deprication_warning="'ChanderG/tmux-notify' is no longer maintained. Please switch to 'rickstaa/tmux-notify'. See https://github.com/ChanderG/tmux-notify/issues/38 for more information."
 if [[ "$OSTYPE" =~ ^darwin ]]; then # If macOS
   osascript -e 'display notification "'"$deprication_warning"'" with title "tmux-notify"'
 else
