@@ -13,33 +13,33 @@ Tmux plugin to notify you when processes are complete.
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Use cases](#use-cases)
-- [Pre-requisites](#pre-requisites)
-- [Install](#install)
-- [Usage](#usage)
-- [Configuration](#configuration)
-  - [Enable verbose notification](#enable-verbose-notification)
-  - [Change monitor update period](#change-monitor-update-period)
-  - [Add additional shell suffixes](#add-additional-shell-suffixes)
-  - [Enable telegram channel notifications](#enable-telegram-channel-notifications)
-- [How does it work](#how-does-it-work)
-- [Other use cases](#other-use-cases)
-  - [Use inside a docker container](#use-inside-a-docker-container)
-- [Contributing](#contributing)
-- [References](#references)
+*   [Use cases](#use-cases)
+*   [Pre-requisites](#pre-requisites)
+*   [Install](#install)
+*   [Usage](#usage)
+*   [Configuration](#configuration)
+    *   [Enable verbose notification](#enable-verbose-notification)
+    *   [Change monitor update period](#change-monitor-update-period)
+    *   [Add additional shell suffixes](#add-additional-shell-suffixes)
+    *   [Enable telegram channel notifications](#enable-telegram-channel-notifications)
+*   [How does it work](#how-does-it-work)
+*   [Other use cases](#other-use-cases)
+    *   [Use inside a docker container](#use-inside-a-docker-container)
+*   [Contributing](#contributing)
+*   [References](#references)
 
 ## Use cases
 
-- When you have already started a process in a pane and wish to be notified (i.e. you can't use a manual trigger).
-- Working in different containers (Docker) -> can't choose the shell -> and can't use a shell-level feature.
-- Working over ssh, but your Tmux is on the client side.
+*   When you have already started a process in a pane and wish to be notified (i.e. you can't use a manual trigger).
+*   Working in different containers (Docker) -> can't choose the shell -> and can't use a shell-level feature.
+*   Working over ssh, but your Tmux is on the client side.
 
 ## Pre-requisites
 
-- Bash
-- Tmux
-- `notify-send` or `osascript`.
-- **Optional**: `wget` (for telegram notifications).
+*   Bash
+*   Tmux
+*   `notify-send` or `osascript`.
+*   **Optional**: `wget` (for telegram notifications).
 
 > **Note**
 > Works on Linux and macOS (note: only actively tested on Linux).
@@ -56,11 +56,11 @@ Use `prefix + I` to install.
 
 ## Usage
 
-- `prefix + m`: Start monitoring a pane and notify when it finishes.
+*   `prefix + m`: Start monitoring a pane and notify when it finishes.
 
-- `prefix + alt + m`: Start monitoring a pane, return it in focus and notify when it finishes.
+*   `prefix + alt + m`: Start monitoring a pane, return it in focus and notify when it finishes.
 
-- `prefix + M`: Cancel monitoring of a pane.
+*   `prefix + M`: Cancel monitoring of a pane.
 
 ## Configuration
 
@@ -74,15 +74,14 @@ The default notification text is `Tmux pane task completed!`. This tool also con
 
 To change the verbose notification text, put `set -g @tnotify-verbose-msg 'put your notification text here'` in the `.tmux.conf` config file. You can use all the Tmux variables in your notification text. Some useful Tmux aliases are:
 
-- `#D`: Pane id
-- `#P`: Pane index
-- `#T`: Pane title
-- `#S`: Session name
-- `#I`: Window index
-- `#W`: Window name
+*   `#D`: Pane id
+*   `#P`: Pane index
+*   `#T`: Pane title
+*   `#S`: Session name
+*   `#I`: Window index
+*   `#W`: Window name
 
 For the complete list of aliases and variables, you are referred to the `FORMATS` section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html).
-
 
 ### Change monitor update period
 
@@ -95,7 +94,7 @@ By default, the monitor sleep period is set to 10 seconds. This means that tmux-
 
 ### Add additional shell suffixes
 
-The Tmux notify script uses your shell prompt suffix to check whether a command has finished. By default, it looks for the `$`, `#` and `%` suffixes. 
+The Tmux notify script uses your shell prompt suffix to check whether a command has finished. By default, it looks for the `$`, `#` and `%` suffixes.
 
 > Put `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the `.tmux.conf` file to add additional suffixes.
 
@@ -109,15 +108,15 @@ The Tmux notify script uses your shell prompt suffix to check whether a command 
 
 By default, the tool only sent operating system notifications. It can, however, also send a message to a user-specified telegram channel.
 
-> Put `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file to enable this. 
+> Put `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file to enable this.
 
 After enabling this option, the following key bindings are available:
 
-- `prefix + ctrl + m`: Start monitoring pane and notify in bash and telegram when it finishes.
+*   `prefix + ctrl + m`: Start monitoring pane and notify in bash and telegram when it finishes.
 
-- `prefix + ctrl + alt + m`: Start monitoring a pane, return it in focus and notify in bash and telegram when it finishes.
+*   `prefix + ctrl + alt + m`: Start monitoring a pane, return it in focus and notify in bash and telegram when it finishes.
 
-Additionally, you can use the `set -g @tnotify-telegram-all 'on'` option to send all notifications to telegram. 
+Additionally, you can use the `set -g @tnotify-telegram-all 'on'` option to send all notifications to telegram.
 
 > **Note**
 > You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
@@ -148,5 +147,5 @@ Feel free to open an issue if you have ideas on how to make this GitHub action b
 
 ## References
 
-- This repository is a **detached fork** from the https://github.com/ChanderG/tmux-notify repository. It was detached because the original repository is no longer maintained.
-- Icon created with svg made by [@chanut](https://www.flaticon.com/authors/chanut) from [www.flaticon.com](https://www.flaticon.com/authors/chanut)
+*   This repository is a **detached fork** from the https://github.com/ChanderG/tmux-notify repository. It was detached because the original repository is no longer maintained.
+*   Icon created with svg made by [@chanut](https://www.flaticon.com/authors/chanut) from [www.flaticon.com](https://www.flaticon.com/authors/chanut)
