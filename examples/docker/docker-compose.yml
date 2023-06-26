@@ -1,0 +1,17 @@
+version: "3"
+services:
+  app:
+    image: tmux-notify-test:latest
+    build: .
+    environment:
+      - DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus # Replace with your user id.
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - /run/user/1000/bus:/run/user/1000/bus # Replace with your user id.
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - $HOME/.tmux:$HOME/.tmux # Your tmux folder.
+      - $HOME/.tmux.conf:$HOME/.tmux.conf # Your tmux config.
+      - $HOME/.tmux.conf.local:$HOME/.tmux.conf.local # Your tmux local config.
+    user: 1000:1000 # Replace with your user / group id.
