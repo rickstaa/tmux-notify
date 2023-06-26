@@ -31,13 +31,3 @@ tmux bind-key M run-shell -b "$CURRENT_DIR/scripts/cancel.sh"
 tmux bind-key M-m run-shell -b "$CURRENT_DIR/scripts/notify.sh true"
 tmux bind-key C-m run-shell -b "$CURRENT_DIR/scripts/notify.sh false true"
 tmux bind-key C-M-m run-shell -b "$CURRENT_DIR/scripts/notify.sh true true"
-
-# Print deprecated message
-deprication_warning="'ChanderG/tmux-notify' is no longer maintained. Please switch to 'rickstaa/tmux-notify'."
-if [[ "$OSTYPE" =~ ^darwin ]]; then # If macOS
-  osascript -e 'display notification "'"$deprication_warning"'" with title "tmux-notify"'
-else
-  # notify-send does not always work due to changing dbus params
-  # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
-  notify-send "WARNING" "${deprication_warning}"
-fi

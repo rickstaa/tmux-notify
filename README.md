@@ -1,11 +1,8 @@
 # tmux-notify
 
-[![Maintained](https://img.shields.io/badge/Maintained%3F-no-red)](https://github.com/ChanderG/tmux-notify/pulse)
+[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green)](https://github.com/ChanderG/tmux-notify/pulse)
 [![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)](contributing.md)
 [![Tmux version](https://img.shields.io/badge/tmux-%3D%3E1.9-blue)](https://github.com/tmux/tmux/wiki)
-
-> **Warning**
-> This project appears to be no longer maintained by the original author. The newly maintained version of this project can be found at [rickstaa/tmux-notify](https://github.com/rickstaa/tmux-notify).
 
 <a href="https://github.com/ChanderG/tmux-notify"><img src="resources/tmux-notify-logo.svg" alt="tmux notify logo" width="567" height="135"/></a>
 
