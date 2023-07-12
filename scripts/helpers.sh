@@ -55,20 +55,28 @@ send_telegram_message() {
 }
 
 # Send notification
-# Usage: notify <message> <send_telegram>
+# Usage: notify <message> <title> <send_telegram>
 notify() {
   # Switch notification method based on OS
   if [[ "$OSTYPE" =~ ^darwin ]]; then # If macOS
-    osascript -e 'display notification "'"$1"'" with title "tmux-notify"'
+    if [ -n "$2" ]; then
+        osascript -e 'display notification "'"$1"'" with title "'"$2"'"'
+    else
+        osascript -e 'display notification "'"$1"'" with title "tmux-notify"'
+    fi
   else
     # notify-send does not always work due to changing dbus params
     # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
-    notify-send "$1"
+    if [ -n "$2" ]; then
+        notify-send "$2" "$1"
+    else
+        notify-send "$1"
+    fi
   fi
   
   # Send telegram message if telegram variables are set, and telegram alert all is
-  # enabled or if the $2 argument is set to true
-  if telegram_available && (telegram_all_enabled || [ "$2" == "true" ]); then
+  # enabled or if the $3 argument is set to true
+  if telegram_available && (telegram_all_enabled || [ "$3" == "true" ]); then
     telegram_bot_id="$(get_tmux_option "$tmux_notify_telegram_bot_id" "$tmux_notify_telegram_bot_id_default")"
     telegram_chat_id="$(get_tmux_option "$tmux_notify_telegram_channel_id" "$tmux_notify_telegram_channel_id_default")"
     send_telegram_message $telegram_bot_id $telegram_chat_id "$1"
