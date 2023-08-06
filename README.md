@@ -8,7 +8,7 @@
 
 Tmux plugin to notify you when processes are complete.
 
-> [!NOTE]\
+> \[!NOTE]\
 > Notifications are sent via [libnotify](https://gitlab.gnome.org/GNOME/libnotify), and visual bells are raised in the Tmux window. Visual bells can be mapped (in the terminal level) to the X11 urgency bit and handled by your window manager.
 
 ## Table of Contents <!-- omit in toc -->
@@ -22,6 +22,7 @@ Tmux plugin to notify you when processes are complete.
     *   [Change monitor update period](#change-monitor-update-period)
     *   [Add additional shell suffixes](#add-additional-shell-suffixes)
     *   [Enable telegram channel notifications](#enable-telegram-channel-notifications)
+    *   [Execute custom notification commands](#execute-custom-notification-commands)
 *   [How does it work](#how-does-it-work)
 *   [Other use cases](#other-use-cases)
     *   [Use inside a docker container](#use-inside-a-docker-container)
@@ -41,7 +42,7 @@ Tmux plugin to notify you when processes are complete.
 *   `notify-send` or `osascript`.
 *   **Optional**: `wget` (for telegram notifications).
 
-> [!NOTE]\
+> \[!NOTE]\
 > Works on Linux and macOS (note: only actively tested on Linux).
 
 ## Install
@@ -61,6 +62,9 @@ Use `prefix + I` to install.
 *   `prefix + alt + m`: Start monitoring a pane, return it in focus and notify when it finishes.
 
 *   `prefix + M`: Cancel monitoring of a pane.
+
+> \[!IMPORTANT]\
+> There is a known issue with alt-based Tmux shortcuts on osx. If you encounter problems, please check [this post](https://superuser.com/questions/649960/option-key-does-not-work-as-meta-in-tmux) for a workaround.
 
 ## Configuration
 
@@ -89,7 +93,7 @@ By default, the monitor sleep period is set to 10 seconds. This means that tmux-
 
 > Put `set -g @tnotify-sleep-duration 'desired duration'` in the `.tmux.conf` file to change this duration.
 
-> [!WARNING]\
+> \[!WARNING]\
 > Remember that there is a trade-off between notification speed (short sleep duration) and the amount of memory this tool needs.
 
 ### Add additional shell suffixes
@@ -98,12 +102,12 @@ The Tmux notify script uses your shell prompt suffix to check whether a command 
 
 > Put `set -g @tnotify-prompt-suffixes 'put your comma-separated bash suffix list here'` in the `.tmux.conf` file to add additional suffixes.
 
-> [!NOTE]\
+> \[!NOTE]\
 > Feel free to open [a pull](https://github.com/rickstaa/tmux-notify/pulls) request or [issue](https://github.com/rickstaa/tmux-notify/issues) if you think your shell prompt suffix should be included by default.
 
 ### Enable telegram channel notifications
 
-> [!WARNING]\
+> \[!WARNING]\
 > This feature requires [wget](https://www.gnu.org/software/wget/) to be installed on your system.
 
 By default, the tool only sent operating system notifications. It can, however, also send a message to a user-specified telegram channel.
@@ -118,17 +122,17 @@ After enabling this option, the following key bindings are available:
 
 Additionally, you can use the `set -g @tnotify-telegram-all 'on'` option to send all notifications to telegram.
 
-> [!NOTE]\
+> \[!NOTE]\
 > You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
 
 ### Execute custom notification commands
 
 You can execute a custom command after a process has finished by putting `set -g @tnotify-custom-cmd 'your custom command here'` in the `.tmux.conf` file. The custom command is executed in the pane where the process has finished. If you want to execute multiple commands, you can also put them in a bash script and execute this script (i.e. `set -g @tnotify-custom-cmd 'bash /path/to/script.sh'`).
 
-> [!WARNING]\
+> \[!WARNING]\
 > The custom command is executed using the `eval` command, so [be careful with what you put in here](https://stackoverflow.com/a/17529221/8135687).
 
-> [!NOTE]\
+> \[!NOTE]\
 > Please consider contributing to [this repository](https://github.com/rickstaa/tmux-notify) if your custom command is useful for others.
 
 ## How does it work
