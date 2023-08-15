@@ -4,7 +4,7 @@ name: Tmux-notify release
 on:
   push:
     branches:
-      - noetic
+      - main
 
 permissions:
   contents: write
