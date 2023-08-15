@@ -151,5 +151,5 @@ Feel free to open an issue if you have ideas on how to make this GitHub action b
 
 ## References
 
-*   This repository is a **detached fork** from the https://github.com/ChanderG/tmux-notify repository. It was detached because the original repository is no longer maintained.
+*   The initial version of this tool was developed by [@ChanderG](https://github.com/ChanderG).
 *   Icon created with svg made by [@chanut](https://www.flaticon.com/authors/chanut) from [www.flaticon.com](https://www.flaticon.com/authors/chanut)
