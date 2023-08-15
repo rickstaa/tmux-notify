@@ -85,7 +85,7 @@ To change the verbose notification text, put `set -g @tnotify-verbose-msg 'put y
 *   `#I`: Window index
 *   `#W`: Window name
 
-For the complete list of aliases and variables, you are referred to the `FORMATS` section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html).
+For the complete list of aliases and variables, you are referred to the `FORMATS` section of the [tmux manual](http://man7.org/linux/man-pages/man1/tmux.1.html). You can also add a notification title using `set -g @tnotify-verbose-title`. Doing so will move the verbose notification text into the notification body.
 
 ### Change monitor update period
 

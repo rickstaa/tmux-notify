@@ -30,7 +30,6 @@ trap 'on_cancel' TERM
 
 # Monitor pane if it is not already monitored
 if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
-  
   # job started - create pid-file
   echo "$$" > "$PID_FILE_PATH"
   
@@ -41,6 +40,8 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   if verbose_enabled; then  # If @tnotify-verbose is enabled
     verbose_msg_value="$(get_tmux_option "$verbose_msg_option" "$verbose_msg_default")"
     complete_message=$(tmux display-message -p "$verbose_msg_value")
+    verbose_msg_title="$(get_tmux_option "$verbose_title_option" "$verbose_title_default")"
+    complete_title=$(tmux display-message -p "$verbose_msg_title")
   else  # If @tnotify-verbose is disabled
     complete_message="Tmux pane task completed!"
   fi
@@ -56,7 +57,6 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   
   # Check process status every 10 seconds to see if has is finished
   while true; do
-    
     # capture pane output
     output=$(tmux capture-pane -pt %"$PANE_ID")
     
@@ -69,7 +69,7 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
         tmux select-window -t @"$WINDOW_ID"
         tmux select-pane -t %"$PANE_ID"
       fi
-      notify "$complete_message" $2
+      notify "$complete_message" "$complete_title" $2
       break
     fi
     

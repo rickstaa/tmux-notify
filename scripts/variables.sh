@@ -25,6 +25,8 @@ export verbose_option="@tnotify-verbose"
 export verbose_default="off"
 export verbose_msg_option="@tnotify-verbose-msg"
 export verbose_msg_default="(#S, #I:#P) Tmux pane task completed!"
+export verbose_title_option="@tnotify-verbose-title"
+export verbose_title_default=""
 
 # Monitor checker interval
 export monitor_sleep_duration="@tnotify-sleep-duration"
