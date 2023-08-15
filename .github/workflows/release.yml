@@ -14,7 +14,7 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: rickstaa/release-please-action@optional_pyproject_toml
+      - uses: google-github-actions/release-please-action@v3
         with:
           token: ${{ secrets.PLEASE_RELEASE_PAT }}
           command: manifest
