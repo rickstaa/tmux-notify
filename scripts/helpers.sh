@@ -60,17 +60,17 @@ notify() {
   # Switch notification method based on OS
   if [[ "$OSTYPE" =~ ^darwin ]]; then # If macOS
     if [ -n "$2" ]; then
-        osascript -e 'display notification "'"$1"'" with title "'"$2"'"'
+      osascript -e 'display notification "'"$1"'" with title "'"$2"'"'
     else
-        osascript -e 'display notification "'"$1"'" with title "tmux-notify"'
+      osascript -e 'display notification "'"$1"'" with title "tmux-notify"'
     fi
   else
     # notify-send does not always work due to changing dbus params
     # see https://superuser.com/questions/1118878/using-notify-send-in-a-tmux-session-shows-error-no-notification#1118896
     if [ -n "$2" ]; then
-        notify-send "$2" "$1"
+      notify-send "$2" "$1"
     else
-        notify-send "$1"
+      notify-send "$1"
     fi
   fi
   

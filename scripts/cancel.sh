@@ -11,7 +11,6 @@ source "${CURRENT_DIR}/variables.sh"
 
 # Cancel pane monitoring if active
 if [[ -f "$PID_FILE_PATH" ]]; then
-  
   # Retrieve monitor process PID
   PID=$(cat "$PID_FILE_PATH")
   

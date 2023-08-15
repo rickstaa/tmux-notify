@@ -30,7 +30,6 @@ trap 'on_cancel' TERM
 
 # Monitor pane if it is not already monitored
 if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
-  
   # job started - create pid-file
   echo "$$" > "$PID_FILE_PATH"
   
@@ -58,7 +57,6 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   
   # Check process status every 10 seconds to see if has is finished
   while true; do
-    
     # capture pane output
     output=$(tmux capture-pane -pt %"$PANE_ID")
     
