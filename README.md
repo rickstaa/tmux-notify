@@ -6,7 +6,7 @@
 
 <a href="https://github.com/rickstaa/tmux-notify"><img src="resources/tmux-notify-logo.svg" alt="tmux notify logo" width="567" height="135"/></a>
 
-Tmux plugin to notify you when processes are complete.
+Tmux plugin to notify you when processes are finished.
 
 > \[!NOTE]\
 > Notifications are sent via [libnotify](https://gitlab.gnome.org/GNOME/libnotify), and visual bells are raised in the Tmux window. Visual bells can be mapped (in the terminal level) to the X11 urgency bit and handled by your window manager.
