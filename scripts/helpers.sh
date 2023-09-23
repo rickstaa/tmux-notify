@@ -85,5 +85,5 @@ notify() {
   # trigger visual bell
   # your terminal emulator can be setup to set URGENT bit on visual bell
   # for eg, Xresources -> URxvt.urgentOnBell: true
-  tmux split-window "echo -e \"\a\" && exit"
+  tmux split-window -t "\$$SESSION_ID":@"$WINDOW_ID" "echo -e \"\a\" && exit"
 }
