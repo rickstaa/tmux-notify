@@ -69,7 +69,7 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
         tmux select-window -t @"$WINDOW_ID"
         tmux select-pane -t %"$PANE_ID"
       fi
-      SESSION_ID=$SESSION_ID WINDOW_ID=$WINDOW_ID notify "$complete_message" "$complete_title" $2
+      notify "$complete_message" "$complete_title" $2
       break
     fi
     
