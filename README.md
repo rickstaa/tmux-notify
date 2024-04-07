@@ -22,6 +22,7 @@ Tmux plugin to notify you when processes are finished.
     *   [Change monitor update period](#change-monitor-update-period)
     *   [Add additional shell suffixes](#add-additional-shell-suffixes)
     *   [Enable telegram channel notifications](#enable-telegram-channel-notifications)
+    *   [Enable Pushover notifications](#enable-pushover-notifications)
     *   [Execute custom notification commands](#execute-custom-notification-commands)
 *   [How does it work](#how-does-it-work)
 *   [Other use cases](#other-use-cases)
