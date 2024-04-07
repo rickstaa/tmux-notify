@@ -109,7 +109,7 @@ notify() {
     local pushover_token="$(get_tmux_option "$tmux_notify_pushover_token" "$tmux_notify_pushover_token_default")"
     local pushover_user="$(get_tmux_option "$tmux_notify_pushover_user" "$tmux_notify_pushover_user_default")"
     local pushover_title="$(get_tmux_option "$tmux_notify_pushover_title" "$tmux_notify_pushover_title_default")"
-    send_pushover_message $pushover_token $pushover_user $pushover_title "$1"
+    send_pushover_message "$pushover_token" "$pushover_user" "$pushover_title" "$1"
   fi
   
   # trigger visual bell
