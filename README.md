@@ -123,7 +123,6 @@ After enabling this option, the following key bindings are available:
 
 Additionally, you can use the `set -g @tnotify-telegram-all 'on'` option to send all notifications to telegram.
 > \[!NOTE]\
-
 > You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
 
 ### Enable Pushover notifications
@@ -138,7 +137,6 @@ By default, the tool only sends operating system notifications. It can, however,
 > You may optionally put `set -g @tnotify-pushover-title 'The title of the message'` to override the default title
 
 > \[!NOTE]\
-
 > You can create a free pushover account at [pushover.net](https://pushover.net/).
 
 
