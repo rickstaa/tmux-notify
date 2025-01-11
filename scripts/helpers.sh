@@ -48,6 +48,7 @@ telegram_available() {
   [ -n "$telegram_id" ] && [ -n "$telegram_chat_id" ]
 }
 
+# Check if pushover token and pushover user are set
 pushover_available() {
   local pushover_token="$(get_tmux_option "$tmux_notify_pushover_token" "$tmux_notify_pushover_token_default")"
   local pushover_user="$(get_tmux_option "$tmux_notify_pushover_user" "$tmux_notify_pushover_user_default")"
