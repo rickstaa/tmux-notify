@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/rickstaa/tmux-notify/compare/v1.5.1...v1.6.0) (2025-01-26)
+
+
+### Features
+
+* add the ability to send notification through Pushover ([#57](https://github.com/rickstaa/tmux-notify/issues/57)) ([8698223](https://github.com/rickstaa/tmux-notify/commit/86982232675550416e3986516014b3f150abfc1d))
+
 ## [1.5.1](https://github.com/rickstaa/tmux-notify/compare/v1.5.0...v1.5.1) (2023-10-15)
 
 
