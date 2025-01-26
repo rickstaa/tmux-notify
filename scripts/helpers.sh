@@ -48,10 +48,34 @@ telegram_available() {
   [ -n "$telegram_id" ] && [ -n "$telegram_chat_id" ]
 }
 
+# Check if pushover token and pushover user are set
+pushover_available() {
+  local pushover_token="$(get_tmux_option "$tmux_notify_pushover_token" "$tmux_notify_pushover_token_default")"
+  local pushover_user="$(get_tmux_option "$tmux_notify_pushover_user" "$tmux_notify_pushover_user_default")"
+  [ -n "$pushover_token" ] && [ -n "$pushover_user" ]
+}
+
 # Send telegram message
 # Usage: send_telegram_message <bot_id> <chat_id> <message>
 send_telegram_message() {
   wget --spider "https://api.telegram.org/bot$1/sendMessage?chat_id=$2&text=${3// /%20}" &> /dev/null
+}
+
+# Send a message over https://pushover.net/
+# Usage: send_pushover_message <token> <user_id> <title> <message>
+# token is the application token on pushover.net
+# user_id is the user or group id of whom will receive the notification
+# the title of the message: https://pushover.net/api#registration
+# message is the message sent
+send_pushover_message() {
+  curl -X POST --location "https://api.pushover.net/1/messages.json" \
+    -H "Content-Type: application/json" \
+    -d "{
+            \"token\": \"$1\",
+            \"user\": \"$2\",
+            \"message\": \"$4\",
+            \"title\": \"$3\"
+        }" &> /dev/null
 }
 
 # Send notification
@@ -80,6 +104,13 @@ notify() {
     telegram_bot_id="$(get_tmux_option "$tmux_notify_telegram_bot_id" "$tmux_notify_telegram_bot_id_default")"
     telegram_chat_id="$(get_tmux_option "$tmux_notify_telegram_channel_id" "$tmux_notify_telegram_channel_id_default")"
     send_telegram_message $telegram_bot_id $telegram_chat_id "$1"
+  fi
+
+  if pushover_available; then
+    local pushover_token="$(get_tmux_option "$tmux_notify_pushover_token" "$tmux_notify_pushover_token_default")"
+    local pushover_user="$(get_tmux_option "$tmux_notify_pushover_user" "$tmux_notify_pushover_user_default")"
+    local pushover_title="$(get_tmux_option "$tmux_notify_pushover_title" "$tmux_notify_pushover_title_default")"
+    send_pushover_message "$pushover_token" "$pushover_user" "$pushover_title" "$1"
   fi
   
   # trigger visual bell

@@ -39,3 +39,11 @@ export tmux_notify_telegram_all="@tnotify-telegram-all"
 export tmux_notify_telegram_bot_id_default=""
 export tmux_notify_telegram_channel_id_default=""
 export tmux_notify_telegram_all_default="off"
+
+# Pushover notification settings
+export tmux_notify_pushover_token="@tnotify-pushover-token"
+export tmux_notify_pushover_user="@tnotify-pushover-user"
+export tmux_notify_pushover_title="@tnotify-pushover-title"
+export tmux_notify_pushover_token_default=""
+export tmux_notify_pushover_user_default=""
+export tmux_notify_pushover_title_default="Tmux Notify"

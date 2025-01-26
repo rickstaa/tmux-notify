@@ -22,6 +22,7 @@ Tmux plugin to notify you when processes are finished.
     *   [Change monitor update period](#change-monitor-update-period)
     *   [Add additional shell suffixes](#add-additional-shell-suffixes)
     *   [Enable telegram channel notifications](#enable-telegram-channel-notifications)
+    *   [Enable Pushover notifications](#enable-pushover-notifications)
     *   [Execute custom notification commands](#execute-custom-notification-commands)
 *   [How does it work](#how-does-it-work)
 *   [Other use cases](#other-use-cases)
@@ -110,7 +111,7 @@ The Tmux notify script uses your shell prompt suffix to check whether a command 
 > \[!WARNING]\
 > This feature requires [wget](https://www.gnu.org/software/wget/) to be installed on your system.
 
-By default, the tool only sent operating system notifications. It can, however, also send a message to a user-specified telegram channel.
+By default, the tool only sends operating system notifications. It can, however, also send a message to a user-specified telegram channel.
 
 > Put `set -g @tnotify-telegram-bot-id 'your telegram bot id'` and `set -g @tnotify-telegram-channel-id 'your channel id'` in the `.tmux.conf` config file to enable this.
 
@@ -124,6 +125,20 @@ Additionally, you can use the `set -g @tnotify-telegram-all 'on'` option to send
 
 > \[!NOTE]\
 > You can get your telegram bot id by creating a bot using [BotFather](https://core.telegram.org/bots#6-botfather) and your channel id by sending your channel invite link to the `@username_to_id_bot` bot.
+
+### Enable Pushover notifications
+
+> \[!WARNING]\
+> This feature requires [curl](https://curl.se/) to be installed on your system.
+
+By default, the tool only sends operating system notifications. It can, however, also send a message to a user-specified pusher user or group.
+
+> Put `set -g @tnotify-pushover-token 'your pushover application token'` and `set -g @tnotify-pushover-user 'your pushover user or group identifier'` in the `.tmux.conf` config file to enable this.
+
+> You may optionally put `set -g @tnotify-pushover-title 'The title of the message'` to override the default title
+
+> \[!NOTE]\
+> You can create a free pushover account at [pushover.net](https://pushover.net/).
 
 ### Execute custom notification commands
 
