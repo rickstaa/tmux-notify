@@ -57,12 +57,9 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   
   # Check process status every 10 seconds to see if has is finished
   while true; do
-    # capture pane output
-    output=$(tmux capture-pane -pt %"$PANE_ID")
-    
     # run tests to determine if work is done
     # if so, break and notify
-    if echo "$output" | tail -n2 | grep -e $prompt_suffixes &> /dev/null; then
+    if tmux capture-pane -pt %"$PANE_ID"| tail -n2 | grep -e $prompt_suffixes &> /dev/null; then
       # tmux display-message "$@"
       if [[ "$1" == "true" ]]; then
         tmux switch -t \$"$SESSION_ID"
