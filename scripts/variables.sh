@@ -32,6 +32,11 @@ export verbose_title_default=""
 export monitor_sleep_duration="@tnotify-sleep-duration"
 export monitor_sleep_duration_default=10
 
+# Coding-agent notification settings
+# {agent} is replaced with the agent name passed to scripts/tnotify-agent.sh.
+export agent_msg_option="@tnotify-agent-msg"
+export agent_msg_default="{agent} needs your attention"
+
 # Telegram notification settings
 export tmux_notify_telegram_bot_id="@tnotify-telegram-bot-id"
 export tmux_notify_telegram_channel_id="@tnotify-telegram-channel-id"

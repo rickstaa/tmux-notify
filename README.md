@@ -24,6 +24,7 @@ Tmux plugin to notify you when processes are finished.
     *   [Enable telegram channel notifications](#enable-telegram-channel-notifications)
     *   [Enable Pushover notifications](#enable-pushover-notifications)
     *   [Execute custom notification commands](#execute-custom-notification-commands)
+*   [Use with coding agents (Claude Code, Codex)](#use-with-coding-agents-claude-code-codex)
 *   [How does it work](#how-does-it-work)
 *   [Other use cases](#other-use-cases)
     *   [Use inside a docker container](#use-inside-a-docker-container)
@@ -149,6 +150,55 @@ You can execute a custom command after a process has finished by putting `set -g
 
 > \[!NOTE]\
 > Please consider contributing to [this repository](https://github.com/rickstaa/tmux-notify) if your custom command is useful for others.
+
+## Use with coding agents (Claude Code, Codex)
+
+The `prefix + m` monitor detects "done" by looking for your shell prompt suffix (`$`, `#`, `%`). Coding agents run as long-lived TUIs and never return to a shell prompt between turns, so that heuristic can't tell when an agent has finished. Instead, these agents emit their own "turn finished / needs attention" event that you can wire into tmux-notify via `scripts/tnotify-agent.sh`.
+
+The helper reuses every notification channel the plugin already supports (libnotify/osascript, Telegram, Pushover, custom command, visual bell) and resolves the agent's pane automatically (it runs inside a tmux pane, so the hook inherits `$TMUX`). It does nothing when not run inside tmux, so it is safe to leave configured everywhere.
+
+> \[!NOTE]\
+> Adjust the path below to your install location. With [TPM](https://github.com/tmux-plugins/tpm) the plugin lives at `~/.tmux/plugins/tmux-notify`.
+
+Optionally customise the message with `set -g @tnotify-agent-msg '{agent} is waiting'` in `.tmux.conf` (the `{agent}` placeholder is replaced with the name you pass to the script).
+
+### Claude Code
+
+Claude Code runs [hooks](https://docs.claude.com/en/docs/claude-code/hooks) from `settings.json` (`~/.claude/settings.json` for all projects, or `.claude/settings.json` per project). The `Stop` event fires when the agent finishes a turn; `Notification` fires when it needs permission or has been idle:
+
+```json
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          { "type": "command", "command": "~/.tmux/plugins/tmux-notify/scripts/tnotify-agent.sh 'Claude Code'" }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          { "type": "command", "command": "~/.tmux/plugins/tmux-notify/scripts/tnotify-agent.sh 'Claude Code'" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+> \[!TIP]\
+> `Stop` fires after **every** turn, which can be noisy. If you only want to be pinged when Claude is blocked on you, wire just the `Notification` event.
+
+### Codex CLI
+
+The [Codex CLI](https://developers.openai.com/codex/) calls the program in the `notify` setting of `~/.codex/config.toml` whenever it emits the `agent-turn-complete` event (Codex appends a JSON payload as a final argument, which the helper safely ignores):
+
+```toml
+notify = ["/Users/you/.tmux/plugins/tmux-notify/scripts/tnotify-agent.sh", "Codex"]
+```
 
 ## How does it work
 
