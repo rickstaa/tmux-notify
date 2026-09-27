@@ -27,8 +27,8 @@ tmux unbind-key M-m
 tmux unbind-key C-m
 tmux unbind-key C-M-m
 
-tmux bind-key m run-shell -b "$CURRENT_DIR/scripts/notify.sh 2>> $tmux_notify_error_log_path_default"
-tmux bind-key M run-shell -b "$CURRENT_DIR/scripts/cancel.sh 2>> $tmux_notify_error_log_path_default"
-tmux bind-key M-m run-shell -b "$CURRENT_DIR/scripts/notify.sh true 2>> $tmux_notify_error_log_path_default"
-tmux bind-key C-m run-shell -b "$CURRENT_DIR/scripts/notify.sh false true 2>> $tmux_notify_error_log_path_default"
-tmux bind-key C-M-m run-shell -b "$CURRENT_DIR/scripts/notify.sh true true 2>> $tmux_notify_error_log_path_default"
+tmux bind-key m run-shell -b "$CURRENT_DIR/scripts/notify.sh false false #{pane_current_command} 2>> $tmux_notify_error_log_path_default" 
+tmux bind-key M run-shell -b "$CURRENT_DIR/scripts/cancel.sh 2>> $tmux_notify_error_log_path_default" 
+tmux bind-key M-m run-shell -b "$CURRENT_DIR/scripts/notify.sh  true false #{pane_current_command} 2>> $tmux_notify_error_log_path_default"
+tmux bind-key C-m run-shell -b "$CURRENT_DIR/scripts/notify.sh false true #{pane_current_command} 2>> $tmux_notify_error_log_path_default" 
+tmux bind-key C-M-m run-shell -b "$CURRENT_DIR/scripts/notify.sh true true #{pane_current_command} 2>> $tmux_notify_error_log_path_default" 

@@ -2,6 +2,10 @@
 # Usage: notify <refocus> <telegram>
 ## -- Start monitoring script
 
+focus_on_completion=$1
+send_telegram=$2
+original_command=$3
+
 # Get current directory
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -72,12 +76,12 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     if echo "$recent_output" | grep -e $prompt_suffixes &> /dev/null; then
       #tmux display-message "$@"
       debug_enabled && debug_log "$debug_path" "Matched monitor for $PID_FILE_PATH"
-      if [[ "$1" == "true" ]]; then # if the script was asked to change focus to the pane upon completion
+      if [[ "$focus_on_completion" == "true" ]]; then # if the script was asked to change focus to the pane upon completion
         tmux switch -t \$"$SESSION_ID"
         tmux select-window -t @"$WINDOW_ID"
         tmux select-pane -t %"$PANE_ID"
       fi
-      notify "$complete_message" "$complete_title" $2
+      notify "$complete_message" "$complete_title" $send_telegram
       break
     fi
     
@@ -94,7 +98,11 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   
   custom_command="$(get_tmux_option "$custom_notify_command" "$custom_notify_command_default")"
   if [[ -n "$custom_command" ]]; then 
+    # expand out current tmux info
     complete_command=$(tmux display-message -p "$custom_command")
+
+    # expand out original command (or anything else we want to add later)
+    complete_command=${complete_command//'@{original_command}'/"$original_command"}
 
     mapfile -t cmd_array < <(xargs printf '%s\n' <<<"$complete_command")
     cmd_array[0]=$(expand_home "${cmd_array[0]}")
