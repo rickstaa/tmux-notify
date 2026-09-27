@@ -40,6 +40,11 @@ debug_enabled() {
   [[ -n "$debug_path" ]]
 }
 
+noisy_enabled() {
+  local verbose_msg_value="$(get_tmux_option "$tmux_notify_noisy_checks" "$tmux_notify_noisy_checks_default")"
+  [ $noisy_checks == "on" ]
+}
+
 # Check if the telegram alert all option is enabled
 telegram_all_enabled() {
   local alert_all="$(get_tmux_option "$tmux_notify_telegram_all" "$tmux_notify_telegram_all_default")"

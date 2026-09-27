@@ -60,7 +60,8 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     debug_enabled && debug_log "$debug_path" "Checking pane for $PID_FILE_PATH: $PANE_ID"
     # capture pane output
     output=$(tmux capture-pane -pt %"$PANE_ID")
-    tmux display-message "checking pane"
+
+    noisy_enabled && tmux display-message "checking pane"
     
     recent_output=$(echo "$output" | tail -n 2)
     debug_enabled && debug_log "$debug_path" "Checking pane content for $PID_FILE_PATH: Line 1: $(head -n 1 <<<"$recent_output")"
