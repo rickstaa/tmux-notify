@@ -139,6 +139,14 @@ get_prompt_suffixes() {
 debug_log() {
   path=$1 
   message=$2
-  timestamp=(date '+%Y-%m-%d %H:%M:%S')
+  timestamp=$(date '+%Y-%m-%d %H:%M:%S')
   echo "[tmux-notify][$timestamp] $message" >> "$path"
+}
+
+expand_home() {
+    local w=$1
+    w=${w/#'${HOME}'/$HOME}
+    w=${w/#'$HOME'/$HOME}
+    w=${w/#\~/$HOME}
+    printf '%s' "$w"
 }

@@ -53,7 +53,7 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   # NOTE: Looks complicated but uses shell parameter expansion
   # see https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Parameter-Expansion
   prompt_suffixes="$(get_prompt_suffixes)"
-  debug_enabled && debug_log "$debug_path" "Built prompt suffixes for $PID_FILE_PATH: $prompt_suffixes"
+  debug_enabled && debug_log "$debug_path" "Built prompt suffixes for $PID_FILE_PATH: $(cat -A <<<"$prompt_suffixes")"
   
   # Check process status every 10 seconds to see if has is finished
   while true; do
@@ -63,8 +63,8 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     tmux display-message "checking pane"
     
     recent_output=$(echo "$output" | tail -n 2)
-    debug_enabled && debug_log "$debug_path" "Checking pane content for $PID_FILE_PATH: Line 1: $(recent_output | head -n 1)"
-    debug_enabled && debug_log "$debug_path" "Checking pane content for $PID_FILE_PATH: Line 2: $(recent_output | tail -n 1)"
+    debug_enabled && debug_log "$debug_path" "Checking pane content for $PID_FILE_PATH: Line 1: $(head -n 1 <<<"$recent_output")"
+    debug_enabled && debug_log "$debug_path" "Checking pane content for $PID_FILE_PATH: Line 2: $(tail -n 1 <<<"$recent_output")"
 
     # run tests to determine if work is done
     # if so, break and notify
@@ -91,13 +91,19 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     debug_enabled && debug_log "$debug_path" "Removed $PID_FILE_PATH"
   fi
   
-  # Execute custom command if specified by user
-  # TODO i guess this gets access to the existing local variables? otherwise should probably be called with them
   custom_command="$(get_tmux_option "$custom_notify_command" "$custom_notify_command_default")"
-  if [[ -n "$custom_command" ]]; then
-    eval "${custom_command}"
+  if [[ -n "$custom_command" ]]; then 
+    complete_command=$(tmux display-message -p "$custom_command")
+
+    mapfile -t cmd_array < <(xargs printf '%s\n' <<<"$complete_command")
+    cmd_array[0]=$(expand_home "${cmd_array[0]}")
+
     tmux display-message "running ${custom_command}"
-    debug_enabled && debug_log "$debug_path" "Run custom notify command: ${custom_command}"
+
+    "${cmd_array[@]}" >/tmp/rn.stdout 2>/tmp/rn.stderr
+    debug_log "$debug_path" "rn exit=$? stderr=[$(cat /tmp/rn.stderr)] stdout=[$(cat /tmp/rn.stdout)]"
+
+    debug_enabled && debug_log "$debug_path" "Run custom notify command: ${custom_command} with normalised literal ${cmd_array[*]}"
   fi
   
   exit 0

@@ -3,7 +3,6 @@
 
 ## Main variables
 if [[ -z $XDG_CACHE_HOME ]]; then
-  mkdir -p ~/.tmux/notify
   export PID_DIR=~/.tmux/notify
 else
   export PID_DIR="$XDG_CACHE_HOME/tmux/tmux-notify"
@@ -50,5 +49,7 @@ export tmux_notify_pushover_user_default=""
 export tmux_notify_pushover_title_default="Tmux Notify"
 
 # debug 
+export tmux_notify_error_log_path="@tnotify-error-log-path"
+export tmux_notify_error_log_path_default="/dev/null"
 export tmux_notify_debug_log_path="@tnotify-debug-log-path"
 export tmux_notify_debug_log_path_default=""
