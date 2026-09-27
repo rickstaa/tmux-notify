@@ -29,6 +29,11 @@ escape_glob_chars() {
   echo "$1" | sed 's/[.[\*^$()+?{|]/\\&/g'
 }
 
+external_only_enabled() {
+  local external_only="$(get_tmux_option "$tmux_notify_external_only" "$tmux_notify_external_only_default")"
+  [ "$external_only" == "on" ]
+}
+
 # Check if verbose option is enabled
 verbose_enabled() {
   local verbose_value="$(get_tmux_option "$verbose_option" "$verbose_default")"
@@ -42,7 +47,7 @@ debug_enabled() {
 
 noisy_enabled() {
   local verbose_msg_value="$(get_tmux_option "$tmux_notify_noisy_checks" "$tmux_notify_noisy_checks_default")"
-  [ $noisy_checks == "on" ]
+  [ "$noisy_checks" == "on" ]
 }
 
 # Check if the telegram alert all option is enabled

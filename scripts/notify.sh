@@ -81,7 +81,6 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
         tmux select-window -t @"$WINDOW_ID"
         tmux select-pane -t %"$PANE_ID"
       fi
-      notify "$complete_message" "$complete_title" $send_telegram
       break
     fi
     
@@ -96,6 +95,8 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     debug_enabled && debug_log "$debug_path" "Removed $PID_FILE_PATH"
   fi
   
+  ! external_only_enabled && notify "$complete_message" "$complete_title" "$send_telegram"
+
   custom_command="$(get_tmux_option "$custom_notify_command" "$custom_notify_command_default")"
   if [[ -n "$custom_command" ]]; then 
     # expand out current tmux info
