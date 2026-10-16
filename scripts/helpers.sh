@@ -116,5 +116,7 @@ notify() {
   # trigger visual bell
   # your terminal emulator can be setup to set URGENT bit on visual bell
   # for eg, Xresources -> URxvt.urgentOnBell: true
-  tmux split-window -t "\$$SESSION_ID":@"$WINDOW_ID" "echo -e \"\a\" && exit"
+  # Write the bell to the monitored pane's tty so tmux flags its window. No shell
+  # command is run, so this works with any default shell.
+  [ -n "$PANE_TTY" ] && printf '\a' > "$PANE_TTY"
 }
