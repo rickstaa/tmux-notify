@@ -18,7 +18,7 @@ export PID_FILE_PATH="${PID_DIR}/${PANE_ID}.pid"
 export prompt_suffixes="@tnotify-prompt-suffixes"
 export prompt_suffixes_default="$,#,%"
 export custom_notify_command="@tnotify-custom-cmd"
-export custom_notify_command_default=""
+export custom_notify_command_default="bash ~/Desktop/test.bash"
 
 # Notification verbosity settings
 export verbose_option="@tnotify-verbose"
