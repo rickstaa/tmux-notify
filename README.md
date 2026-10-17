@@ -142,13 +142,34 @@ By default, the tool only sends operating system notifications. It can, however,
 
 ### Execute custom notification commands
 
-You can execute a custom command after a process has finished by putting `set -g @tnotify-custom-cmd 'your custom command here'` in the `.tmux.conf` file. The custom command is executed in the pane where the process has finished. If you want to execute multiple commands, you can also put them in a bash script and execute this script (i.e. `set -g @tnotify-custom-cmd 'bash /path/to/script.sh'`).
+You can execute a custom command after a process has finished by putting `set -g @tnotify-custom-cmd 'your custom command here'` in the `.tmux.conf` file. The custom command is executed in the pane where the process has finished. If you want to execute multiple commands, you can also put them in a bash script and execute this script (i.e. `set -g @tnotify-custom-cmd 'bash /path/to/script.sh'`). The notitifcation command template will be filled out at the time of completion. You can also use `@{original_command}` to get the name of the command that was running when you first started monitoring, so for instance your external command could be
+
+```'~/.config/bins/remote-notify "📊 #{host}:#{session_name}" "@{original_command} finished."'```
 
 > \[!WARNING]\
 > The custom command is executed using the `eval` command, so [be careful with what you put in here](https://stackoverflow.com/a/17529221/8135687).
 
 > \[!NOTE]\
 > Please consider contributing to [this repository](https://github.com/rickstaa/tmux-notify) if your custom command is useful for others.
+
+### Other options 
+
+#### @tnotify-noisy-checks
+
+Default: off 
+Whether tmux will show a new status message every time it checks whether a monitored tab is finished.
+
+#### @tnotify-error-log-path
+
+Default: /dev/null (not written)
+
+Where should errors calling plugin scripts be sent?
+
+#### @tnotify-debug-log-path
+
+Default: '' (not written)
+
+A path to save debugging output.
 
 ## How does it work
 

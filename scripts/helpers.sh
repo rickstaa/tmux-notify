@@ -29,10 +29,25 @@ escape_glob_chars() {
   echo "$1" | sed 's/[.[\*^$()+?{|]/\\&/g'
 }
 
+external_only_enabled() {
+  local external_only="$(get_tmux_option "$tmux_notify_external_only" "$tmux_notify_external_only_default")"
+  [ "$external_only" == "on" ]
+}
+
 # Check if verbose option is enabled
 verbose_enabled() {
   local verbose_value="$(get_tmux_option "$verbose_option" "$verbose_default")"
   [ "$verbose_value" == "on" ]
+}
+
+debug_enabled() {
+  local debug_path="$(get_tmux_option "$tmux_notify_debug_log_path" "$tmux_notify_debug_log_path_default")"
+  [[ -n "$debug_path" ]]
+}
+
+noisy_enabled() {
+  local verbose_msg_value="$(get_tmux_option "$tmux_notify_noisy_checks" "$tmux_notify_noisy_checks_default")"
+  [ "$noisy_checks" == "on" ]
 }
 
 # Check if the telegram alert all option is enabled
@@ -117,4 +132,31 @@ notify() {
   # your terminal emulator can be setup to set URGENT bit on visual bell
   # for eg, Xresources -> URxvt.urgentOnBell: true
   tmux split-window -t "\$$SESSION_ID":@"$WINDOW_ID" "echo -e \"\a\" && exit"
+}
+
+get_prompt_suffixes() {
+  # Create bash suffix list
+  # NOTE: Looks complicated but uses shell parameter expansion
+  # see https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Parameter-Expansion
+  prompt_suffixes="$(get_tmux_option "$prompt_suffixes" "$prompt_suffixes_default")"
+  prompt_suffixes=${prompt_suffixes// /} # Remove whitespace
+  prompt_suffixes=${prompt_suffixes//,/|} # Replace comma with or operator
+  prompt_suffixes=$(escape_glob_chars "$prompt_suffixes")
+  prompt_suffixes="\(${prompt_suffixes}\)$"
+  echo "$prompt_suffixes"
+}
+
+debug_log() {
+  path=$1 
+  message=$2
+  timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+  echo "[tmux-notify][$timestamp] $message" >> "$path"
+}
+
+expand_home() {
+    local w=$1
+    w=${w/#'${HOME}'/$HOME}
+    w=${w/#'$HOME'/$HOME}
+    w=${w/#\~/$HOME}
+    printf '%s' "$w"
 }

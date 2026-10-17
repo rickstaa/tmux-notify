@@ -47,3 +47,16 @@ export tmux_notify_pushover_title="@tnotify-pushover-title"
 export tmux_notify_pushover_token_default=""
 export tmux_notify_pushover_user_default=""
 export tmux_notify_pushover_title_default="Tmux Notify"
+
+# debug 
+export tmux_notify_error_log_path="@tnotify-error-log-path"
+export tmux_notify_error_log_path_default="/dev/null"
+export tmux_notify_debug_log_path="@tnotify-debug-log-path"
+export tmux_notify_debug_log_path_default=""
+
+# show a tmux message every time we check if something has finished
+export tmux_notify_noisy_checks="@tnotify-noisy-checks"
+export tmux_notify_noisy_checks_default="off"
+
+export tmux_notify_external_only="@tnotify-external-only"
+export tmux_notify_external_only_default="off"

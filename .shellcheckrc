@@ -1,0 +1,3 @@
+# .shellcheckrc
+shell=bash
+external-sources=true

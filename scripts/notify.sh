@@ -2,12 +2,18 @@
 # Usage: notify <refocus> <telegram>
 ## -- Start monitoring script
 
+focus_on_completion=$1
+send_telegram=$2
+original_command=$3
+
 # Get current directory
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Source helpers and variables
 source "${CURRENT_DIR}/helpers.sh"
 source "${CURRENT_DIR}/variables.sh"
+
+debug_path="$(get_tmux_option "$tmux_notify_debug_log_path" "$tmux_notify_debug_log_path_default")"
 
 ## Functions
 
@@ -35,6 +41,7 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   
   # Display tnotify start messsage
   tmux display-message "Monitoring pane..."
+  debug_enabled && debug_log "$debug_path" "Created new monitor: $PID_FILE_PATH"
   
   # Construct tnotify finish message
   if verbose_enabled; then  # If @tnotify-verbose is enabled
@@ -49,27 +56,31 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
   # Create bash suffix list
   # NOTE: Looks complicated but uses shell parameter expansion
   # see https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Parameter-Expansion
-  prompt_suffixes="$(get_tmux_option "$prompt_suffixes" "$prompt_suffixes_default")"
-  prompt_suffixes=${prompt_suffixes// /} # Remove whitespace
-  prompt_suffixes=${prompt_suffixes//,/|} # Replace comma with or operator
-  prompt_suffixes=$(escape_glob_chars "$prompt_suffixes")
-  prompt_suffixes="\(${prompt_suffixes}\)$"
+  prompt_suffixes="$(get_prompt_suffixes)"
+  debug_enabled && debug_log "$debug_path" "Built prompt suffixes for $PID_FILE_PATH: $(cat -A <<<"$prompt_suffixes")"
   
   # Check process status every 10 seconds to see if has is finished
   while true; do
+    debug_enabled && debug_log "$debug_path" "Checking pane for $PID_FILE_PATH: $PANE_ID"
     # capture pane output
     output=$(tmux capture-pane -pt %"$PANE_ID")
+
+    noisy_enabled && tmux display-message "checking pane"
     
+    recent_output=$(echo "$output" | tail -n 2)
+    debug_enabled && debug_log "$debug_path" "Checking pane content for $PID_FILE_PATH: Line 1: $(head -n 1 <<<"$recent_output")"
+    debug_enabled && debug_log "$debug_path" "Checking pane content for $PID_FILE_PATH: Line 2: $(tail -n 1 <<<"$recent_output")"
+
     # run tests to determine if work is done
     # if so, break and notify
-    if echo "$output" | tail -n2 | grep -e $prompt_suffixes &> /dev/null; then
-      # tmux display-message "$@"
-      if [[ "$1" == "true" ]]; then
+    if echo "$recent_output" | grep -e $prompt_suffixes &> /dev/null; then
+      #tmux display-message "$@"
+      debug_enabled && debug_log "$debug_path" "Matched monitor for $PID_FILE_PATH"
+      if [[ "$focus_on_completion" == "true" ]]; then # if the script was asked to change focus to the pane upon completion
         tmux switch -t \$"$SESSION_ID"
         tmux select-window -t @"$WINDOW_ID"
         tmux select-pane -t %"$PANE_ID"
       fi
-      notify "$complete_message" "$complete_title" $2
       break
     fi
     
@@ -77,22 +88,37 @@ if [[ ! -f "$PID_FILE_PATH" ]]; then  # If pane not yet monitored
     monitor_sleep_duration_value=$(get_tmux_option "$monitor_sleep_duration" "$monitor_sleep_duration_default")
     sleep "$monitor_sleep_duration_value"
   done
-  
+
   # job done - remove pid file
   if [[ -f "$PID_FILE_PATH" ]]; then
     rm "$PID_FILE_PATH"
+    debug_enabled && debug_log "$debug_path" "Removed $PID_FILE_PATH"
   fi
   
-  # Execute custom command if specified by user
+  ! external_only_enabled && notify "$complete_message" "$complete_title" "$send_telegram"
+
   custom_command="$(get_tmux_option "$custom_notify_command" "$custom_notify_command_default")"
-  if [[ -n "$custom_command" ]]; then
-    eval "${custom_command}"
+  if [[ -n "$custom_command" ]]; then 
+    # expand out current tmux info
+    complete_command=$(tmux display-message -p "$custom_command")
+
+    # expand out original command (or anything else we want to add later)
+    complete_command=${complete_command//'@{original_command}'/"$original_command"}
+
+    mapfile -t cmd_array < <(xargs printf '%s\n' <<<"$complete_command")
+    cmd_array[0]=$(expand_home "${cmd_array[0]}")
+
+    tmux display-message "running ${custom_command}"
+
+    "${cmd_array[@]}" >/tmp/rn.stdout 2>/tmp/rn.stderr
+    debug_log "$debug_path" "rn exit=$? stderr=[$(cat /tmp/rn.stderr)] stdout=[$(cat /tmp/rn.stdout)]"
+
+    debug_enabled && debug_log "$debug_path" "Run custom notify command: ${custom_command} with normalised literal ${cmd_array[*]}"
   fi
   
   exit 0
 else  # If pane is already being monitored
-  
-  # Display pane already monitored message
+  debug_enabled && debug_log "$debug_path" "Attempt to monitor pane already being monitored."
   tmux display-message "Pane already monitored..."
   exit 0
 fi
