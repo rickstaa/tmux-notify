@@ -12,6 +12,7 @@ fi
 export SESSION_ID=$(tmux display-message -p '#{session_id}'  | tr -d $)
 export WINDOW_ID=$(tmux display-message -p '#{window_id}' | tr -d @)
 export PANE_ID=$(tmux display-message -p '#{pane_id}' | tr -d %)
+export PANE_TTY=$(tmux display-message -p '#{pane_tty}')
 export PID_FILE_PATH="${PID_DIR}/${PANE_ID}.pid"
 
 ## Tnotify tmux options
