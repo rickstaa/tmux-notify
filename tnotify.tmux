@@ -16,7 +16,7 @@ source "$CURRENT_DIR/scripts/variables.sh"
 
 # prepare pid file directory
 if [[ ! -d $PID_DIR ]]; then
-  mkdir $PID_DIR
+  mkdir -p "$PID_DIR"
 fi
 
 # Bind plugin keys
